@@ -32,8 +32,6 @@ const getMarkers = (map_id) => {
 
 const renderMarkers = (markerData) => {
   markerData.forEach(marker => {
-    const lat = Number(marker.lat);
-    const lng = Number(marker.lng);
     addMarker({lat, lng});
   });
 };
@@ -58,5 +56,3 @@ const loadMap = (id) => {
       map.setCenter(center);
     });
 };
-
-// getMarkers(1).then(data => console.log(getCenter(data)));
