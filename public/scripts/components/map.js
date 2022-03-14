@@ -59,7 +59,3 @@ const loadMap = (id) => {
     });
   window.views_manager.show('$map');
 };
-
-const createMap = () => {
-  window.views_manager.show('$map');
-};
