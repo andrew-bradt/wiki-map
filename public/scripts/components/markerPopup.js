@@ -58,7 +58,7 @@ $(() => {
     icon_img_url: 'https://icons.iconarchive.com/icons/sonya/swarm/64/Pizza-icon.png'
   };
 
-  window.$popUp = $(createPopup(marker, false));
+  window.$popUp = $(createPopup(marker, true));
   // end of test
 
   // Actions when submitting form elements
@@ -79,6 +79,8 @@ $(() => {
       method: "PUT",
       url: `/api/markers`, // id will be included inside data
       data
+    }).then(() => {
+      $popUp.detach();
     });
 
   });
@@ -93,7 +95,10 @@ $(() => {
       method: "DELETE",
       url: `/api/markers`, // id will be included inside data
       data
+    }).then(() => {
+      $popUp.detach();
     });
+
   });
 
 
