@@ -1,8 +1,10 @@
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
+  min-width: 100vw;
 
   background: rgb(163, 208, 219);
   background: linear-gradient(
@@ -14,4 +16,14 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+}
+
+header {
+  width: 100%;
+  height: 10%;
+}
+
+#map {
+  width: 100vw;
+  height: 90vh;
 }

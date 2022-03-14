@@ -1,1 +1,3 @@
-// Client facing scripts here
+$(()=>{
+  views_manager.load();
+});
