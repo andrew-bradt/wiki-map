@@ -5,6 +5,24 @@ const MAP_ID = 1;
 const TEMP_TITLE = 'Pizza';
 
 module.exports = (db) => {
+
+  router.delete('/', (req, res) => {
+    const markerId = req.body.id;
+    const query = `
+    DELETE FROM markers
+    WHERE id=$1
+    `;
+
+    db.query(query, [markerId])
+      .then(result => {
+        console.log(`Marker id: ${markerId} delete successful`);
+        res.send();
+      })
+      .catch(err => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
   router.put("/", (req, res) => {
     const newInfo = req.body;
 
@@ -22,6 +40,7 @@ module.exports = (db) => {
     db.query(query, values)
       .then(result => {
         console.log(`Marker id: ${newInfo.id} update successful`);
+        res.send();
       }
       )
       .catch(err => {

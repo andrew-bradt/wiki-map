@@ -1,44 +1,44 @@
 $(() => {
 
-  const createPopup = function(marker, isEdit) {
+  const createPopup = function (marker, isEdit) {
     return `
-    <div class='card'>
+    <div class='card shadow p-3 mb-5 rounded'>
     <img class='card-img-top' src='${marker.img_url}'>
     <div class='card-body'>
     <form class='infoDisplay'>
     <input type="hidden" name="id" value="${marker.id}">
     <div class="form-group">
-      <label for="title" class="col-form-label">Title</label>
+      <label for="title" class="col-form-label text-secondary">Title</label>
       <div>
-        <input type="text" class="form-control-plaintext" id="title" name="titel" value='${marker.title}'>
+        <input type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext border border-primary rounded" id="title" name="titel" value='${marker.title}'>
       </div>
     </div>
     <div class="form-group">
-      <label for="description" class="col-form-label">Description</label>
+      <label for="description" class="col-form-label text-secondary">Description</label>
       <div>
-        <input type="text" readonly class="form-control-plaintext" id="description" name="description" value='${marker.description}'>
+        <textarea type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext  border border-primary rounded" rows='2' id="description" name="description">${marker.description}</textarea>
       </div>
-    </div>
-    <div class="form-group hidden">
-      <label for="img_url" class="col-form-label">Image url</label>
-      <div>
-        <input type="text" readonly class="form-control-plaintext" id="img_url" name="img_url" value='${marker.img_url}'>
-      </div>
-    </div>
-    <div class="form-group hidden">
-      <label for="icon_img_url" class="col-form-label">Icon Image url</label>
-      <div>
-        <input type="text" readonly class="form-control-plaintext" id="icon_img_url" name="icon_img_url" value='${marker.icon_img_url}'>
-      </div>
-    </div>
-    ${isEdit ?
-        `<button type='submit'>Save changes</button>`
+      ${isEdit ?
+        `</div>
+          <div class="form-group">
+            <label for="img_url" class="col-form-label text-secondary">Image url</label>
+            <div>
+              <input type="text" class="form-control-plaintext border border-primary rounded" id="img_url" name="img_url" value='${marker.img_url}'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="icon_img_url" class="col-form-label text-secondary">Icon Image url</label>
+            <div>
+              <input type="text" class="form-control-plaintext  border border-primary rounded" id="icon_img_url" name="icon_img_url" value='${marker.icon_img_url}'>
+            </div>
+          </div>
+        <button type='submit' class='btn btn-primary btn-block'>Save changes</button>`
         : ``}
     </form>
     ${isEdit ?
         `<form class='deleteMarker'>
         <input type="hidden" name="id" value="${marker.id}">
-        <button type='submit'>Delete marker</button>
+        <button type='submit' class='btn btn-secondary btn-block'>Delete marker</button>
         </form>`
         : ``}
     </div>
@@ -46,13 +46,14 @@ $(() => {
     `;
   };
 
+  // Store in window to allow access globally
   window.createPopup = createPopup;
 
   // test marker
   const marker = {
     id: 1,
     title: 'Pizza Nova',
-    description: 'quick and easy',
+    description: `Antonino Pizzeria is located off the main road.`,
     img_url: 'https://lh5.googleusercontent.com/p/AF1QipOqrdfgkc1dcj6XruqiT09zf1vD1Nd5MvxGfz3H=w408-h306-k-no',
     icon_img_url: 'https://icons.iconarchive.com/icons/sonya/swarm/64/Pizza-icon.png'
   };
@@ -62,8 +63,15 @@ $(() => {
 
   // Actions when submitting form elements
   // submit changes
-  $('body').on('submit', '.infoDisplay', function(event) {
+  $('body').on('submit', '.infoDisplay', function (event) {
     event.preventDefault();
+
+    // check if title is empty
+    if (!$('#title').val()) {
+
+      alert('Title cannot be empty!');
+      return;
+    }
 
     const data = $(this).serialize();
 
@@ -71,11 +79,14 @@ $(() => {
       method: "PUT",
       url: `/api/markers`, // id will be included inside data
       data
+    }).then(() => {
+      $popUp.detach();
     });
+
   });
 
   // Delete marker
-  $('body').on('submit', '.deleteMarker', function(event) {
+  $('body').on('submit', '.deleteMarker', function (event) {
     event.preventDefault();
 
     const data = $(this).serialize();
@@ -84,7 +95,10 @@ $(() => {
       method: "DELETE",
       url: `/api/markers`, // id will be included inside data
       data
+    }).then(() => {
+      $popUp.detach();
     });
+
   });
 
 
