@@ -17,9 +17,9 @@ html {
     padding: 1em 0 0 0;
   }
 
-  input {
-    border-bottom: 1px solid black;
-    padding: 0;
+  input, textarea {
+    padding: 1em;
+    height: 100%;
   }
 
   button {

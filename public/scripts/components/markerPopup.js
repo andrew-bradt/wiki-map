@@ -2,7 +2,7 @@ $(() => {
 
   const createPopup = function (marker, isEdit) {
     return `
-    <div class='card'>
+    <div class='card shadow p-3 mb-5 rounded'>
     <img class='card-img-top' src='${marker.img_url}'>
     <div class='card-body'>
     <form class='infoDisplay'>
@@ -10,26 +10,26 @@ $(() => {
     <div class="form-group">
       <label for="title" class="col-form-label text-secondary">Title</label>
       <div>
-        <input type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext" id="title" name="titel" value='${marker.title}'>
+        <input type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext border border-primary rounded" id="title" name="titel" value='${marker.title}'>
       </div>
     </div>
     <div class="form-group">
       <label for="description" class="col-form-label text-secondary">Description</label>
       <div>
-        <input type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext" id="description" name="description" value='${marker.description}'>
+        <textarea type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext  border border-primary rounded" rows='2' id="description" name="description">${marker.description}</textarea>
       </div>
       ${isEdit ?
         `</div>
           <div class="form-group">
             <label for="img_url" class="col-form-label text-secondary">Image url</label>
             <div>
-              <input type="text" class="form-control-plaintext" id="img_url" name="img_url" value='${marker.img_url}'>
+              <input type="text" class="form-control-plaintext border border-primary rounded" id="img_url" name="img_url" value='${marker.img_url}'>
             </div>
           </div>
           <div class="form-group">
             <label for="icon_img_url" class="col-form-label text-secondary">Icon Image url</label>
             <div>
-              <input type="text" class="form-control-plaintext" id="icon_img_url" name="icon_img_url" value='${marker.icon_img_url}'>
+              <input type="text" class="form-control-plaintext  border border-primary rounded" id="icon_img_url" name="icon_img_url" value='${marker.icon_img_url}'>
             </div>
           </div>
         <button type='submit' class='btn btn-primary btn-block'>Save changes</button>`
@@ -53,12 +53,12 @@ $(() => {
   const marker = {
     id: 1,
     title: 'Pizza Nova',
-    description: 'quick and easy',
+    description: `Antonino Pizzeria is located off the main road.`,
     img_url: 'https://lh5.googleusercontent.com/p/AF1QipOqrdfgkc1dcj6XruqiT09zf1vD1Nd5MvxGfz3H=w408-h306-k-no',
     icon_img_url: 'https://icons.iconarchive.com/icons/sonya/swarm/64/Pizza-icon.png'
   };
 
-  window.$popUp = $(createPopup(marker, true));
+  window.$popUp = $(createPopup(marker, false));
   // end of test
 
   // Actions when submitting form elements
@@ -72,7 +72,7 @@ $(() => {
       alert('Title cannot be empty!');
       return;
     }
-    
+
     const data = $(this).serialize();
 
     $.ajax({
