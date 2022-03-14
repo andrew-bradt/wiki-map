@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const USER_ID = 1;
+const MAP_ID = 1;
 const TEMP_TITLE = 'Pizza';
 
 module.exports = (db) => {
@@ -11,7 +11,7 @@ module.exports = (db) => {
     INSERT INTO markers (map_id, title, lat, lng)
     VALUES ($1, $2, $3, $4);`
     ;
-    const queryParams = [USER_ID, TEMP_TITLE, lat, lng];
+    const queryParams = [MAP_ID, TEMP_TITLE, lat, lng];
     db.query(queryString, queryParams);
   });
   return router;
