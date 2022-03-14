@@ -8,37 +8,37 @@ $(() => {
     <form class='infoDisplay'>
     <input type="hidden" name="id" value="${marker.id}">
     <div class="form-group">
-      <label for="title" class="col-form-label">Title</label>
+      <label for="title" class="col-form-label text-secondary">Title</label>
       <div>
-        <input type="text" class="form-control-plaintext" id="title" name="titel" value='${marker.title}'>
+        <input type="text" ${isEdit ? `` : `readonly` } class="form-control-plaintext" id="title" name="titel" value='${marker.title}'>
       </div>
     </div>
     <div class="form-group">
-      <label for="description" class="col-form-label">Description</label>
+      <label for="description" class="col-form-label text-secondary">Description</label>
       <div>
-        <input type="text" readonly class="form-control-plaintext" id="description" name="description" value='${marker.description}'>
+        <input type="text" ${isEdit ? `` : `readonly` } class="form-control-plaintext" id="description" name="description" value='${marker.description}'>
       </div>
-    </div>
-    <div class="form-group hidden">
-      <label for="img_url" class="col-form-label">Image url</label>
-      <div>
-        <input type="text" readonly class="form-control-plaintext" id="img_url" name="img_url" value='${marker.img_url}'>
-      </div>
-    </div>
-    <div class="form-group hidden">
-      <label for="icon_img_url" class="col-form-label">Icon Image url</label>
-      <div>
-        <input type="text" readonly class="form-control-plaintext" id="icon_img_url" name="icon_img_url" value='${marker.icon_img_url}'>
-      </div>
-    </div>
-    ${isEdit ?
-        `<button type='submit'>Save changes</button>`
+      ${isEdit ?
+        `</div>
+          <div class="form-group">
+            <label for="img_url" class="col-form-label text-secondary">Image url</label>
+            <div>
+              <input type="text" class="form-control-plaintext" id="img_url" name="img_url" value='${marker.img_url}'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="icon_img_url" class="col-form-label text-secondary">Icon Image url</label>
+            <div>
+              <input type="text" class="form-control-plaintext" id="icon_img_url" name="icon_img_url" value='${marker.icon_img_url}'>
+            </div>
+          </div>
+        <button type='submit' class='btn btn-primary btn-block'>Save changes</button>`
         : ``}
     </form>
     ${isEdit ?
         `<form class='deleteMarker'>
         <input type="hidden" name="id" value="${marker.id}">
-        <button type='submit'>Delete marker</button>
+        <button type='submit' class='btn btn-secondary btn-block'>Delete marker</button>
         </form>`
         : ``}
     </div>
@@ -58,7 +58,7 @@ $(() => {
     icon_img_url: 'https://icons.iconarchive.com/icons/sonya/swarm/64/Pizza-icon.png'
   };
 
-  window.$popUp = $(createPopup(marker, true));
+  window.$popUp = $(createPopup(marker, false));
   // end of test
 
   // Actions when submitting form elements
