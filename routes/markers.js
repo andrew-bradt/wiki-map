@@ -12,7 +12,16 @@ module.exports = (db) => {
     VALUES ($1, $2, $3, $4);`
     ;
     const queryParams = [MAP_ID, TEMP_TITLE, lat, lng];
-    db.query(queryString, queryParams);
+
+    db.query(queryString, queryParams)
+      .then(()=>{
+        res.send();
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({error: err.message});
+      });
   });
   return router;
 };
