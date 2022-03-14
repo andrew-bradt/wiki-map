@@ -3,6 +3,7 @@
 // Assigning functions to window object is unnecessary unless your function is referring to DOM elements outside of function scope
 $(()=>{
   window.$map = $('#map');
+
 });
 
 const addMarker = (coords) => {
@@ -56,4 +57,9 @@ const loadMap = (id) => {
       const center = getCenter(data);
       map.setCenter(center);
     });
+  window.views_manager.show('$map');
+};
+
+const createMap = () => {
+  window.views_manager.show('$map');
 };
