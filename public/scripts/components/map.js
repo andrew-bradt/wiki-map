@@ -23,10 +23,10 @@ const sendMarkerData = (data) => {
   });
 };
 
-const getMarkers = (id) => {
+const getMarkers = (map_id) => {
   $.ajax({
     type: 'GET',
-    url: `/api/map/${id}`
+    url: `/api/map/${map_id}`
   }).then(res => {
     return res;
   }).catch(err=>{
