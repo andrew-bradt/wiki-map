@@ -11,3 +11,7 @@ const addMarker = (coords) => {
     map
   });
 };
+
+const editMarker = () => {
+
+};
