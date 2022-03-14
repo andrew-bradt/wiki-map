@@ -8,6 +8,6 @@ CREATE TABLE markers (
   description TEXT,
   img_url TEXT,
   icon_img_url TEXT,
-  lat NUMERIC(8, 6) NOT NULL,
-  lng NUMERIC(8, 6) NOT NULL
+  lat DECIMAL NOT NULL,
+  lng DECIMAL NOT NULL
 );

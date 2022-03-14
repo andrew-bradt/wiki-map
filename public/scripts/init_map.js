@@ -12,6 +12,7 @@ function initMap() {
       lng: e.latLng.lng()
     };
     addMarker(coords);
-
+    sendMarkerData(coords);
   });
 };
+

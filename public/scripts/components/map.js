@@ -11,3 +11,14 @@ const addMarker = (coords) => {
     map
   });
 };
+
+const sendMarkerData = (data) => {
+  $.ajax({
+    type: 'POST',
+    url: '/api/markers',
+    data,
+    success: function() {
+      console.log('Success');
+    }
+  });
+};
