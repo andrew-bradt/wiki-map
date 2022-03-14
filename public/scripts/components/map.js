@@ -22,3 +22,14 @@ const sendMarkerData = (data) => {
     }
   });
 };
+
+const getMarkers = (id) => {
+  $.ajax({
+    type: 'GET',
+    url: `/api/map/${id}`
+  }).then(res => {
+    return res;
+  }).catch(err=>{
+    console.log(err.message);
+  });
+};
