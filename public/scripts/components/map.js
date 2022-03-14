@@ -12,6 +12,13 @@ const addMarker = (coords) => {
   });
 };
 
-const editMarker = () => {
-
+const sendMarkerData = (data) => {
+  $.ajax({
+    type: 'POST',
+    url: '/api/markers',
+    data,
+    success: function() {
+      console.log('Success');
+    }
+  });
 };

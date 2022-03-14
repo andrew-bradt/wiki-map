@@ -69,7 +69,7 @@ $(() => {
 
     $.ajax({
       method: "PUT",
-      url: `/markers`, // id will be included inside data
+      url: `/api/markers`, // id will be included inside data
       data
     });
   });
@@ -82,7 +82,7 @@ $(() => {
     console.log(data);
     $.ajax({
       method: "DELETE",
-      url: `/markers`, // id will be included inside data
+      url: `/api/markers`, // id will be included inside data
       data
     });
   });
