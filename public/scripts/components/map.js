@@ -24,12 +24,17 @@ const sendMarkerData = (data) => {
 };
 
 const getMarkers = (map_id) => {
-  $.ajax({
+  return $.ajax({
     type: 'GET',
     url: `/api/map/${map_id}`
-  }).then(res => {
-    return res;
-  }).catch(err=>{
-    console.log(err.message);
   });
 };
+
+const renderMarkers = (markerData) => {
+  markerData.forEach(marker => {
+    const lat = Number(marker.lat);
+    const lng = Number(marker.lng);
+    addMarker({lat, lng});
+  });
+};
+
