@@ -10,6 +10,11 @@ $(()=>{
 
   // Invoke when component should be swapped with the component jQueryDOM Element
   window.views_manager.show = function (component) {
+    $map.detach();
 
+    switch (component) {
+    case '$map':
+      $map.appendTo($root);
+    }
   };
 });
