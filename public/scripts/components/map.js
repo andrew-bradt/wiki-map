@@ -38,3 +38,14 @@ const renderMarkers = (markerData) => {
   });
 };
 
+const getCenter = (markerData) => {
+  const coorSum = markerData.reduce((a, b) => {
+    return {
+      lat: a.lat + b.lat,
+      lng: a.lng + b.lng
+    };
+  });
+  coorSum.lat /= markerData.length;
+  coorSum.lng /= markerData.length;
+  return coorSum;
+};
