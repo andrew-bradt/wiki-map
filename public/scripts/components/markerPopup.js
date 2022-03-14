@@ -46,6 +46,7 @@ $(() => {
     `;
   };
 
+  // Store in window to allow access globally
   window.createPopup = createPopup;
 
   // test marker
