@@ -10,7 +10,7 @@ $(() => {
     <div class="form-group">
       <label for="title" class="col-form-label">Title</label>
       <div>
-        <input type="text" readonly class="form-control-plaintext" id="title" name="titel" value='${marker.title}'>
+        <input type="text" class="form-control-plaintext" id="title" name="titel" value='${marker.title}'>
       </div>
     </div>
     <div class="form-group">
