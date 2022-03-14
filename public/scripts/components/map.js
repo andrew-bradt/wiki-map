@@ -32,6 +32,7 @@ const getMarkers = (map_id) => {
 
 const renderMarkers = (markerData) => {
   markerData.forEach(marker => {
+    const {lat, lng} = marker;
     addMarker({lat, lng});
   });
 };
