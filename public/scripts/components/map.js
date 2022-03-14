@@ -49,3 +49,14 @@ const getCenter = (markerData) => {
   coorSum.lng /= markerData.length;
   return coorSum;
 };
+
+const loadMap = (id) => {
+  getMarkers(id)
+    .then(data => {
+      renderMarkers(data);
+      const center = getCenter(data);
+      map.setCenter(center);
+    });
+};
+
+// getMarkers(1).then(data => console.log(getCenter(data)));
