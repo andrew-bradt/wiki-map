@@ -15,7 +15,10 @@ const addMarker = (coords) => {
   markers.push(marker);
 };
 
-const removeMarkers = () => markers.forEach(marker => marker.setMap(null));
+const removeMarkers = () => {
+  markers.forEach(marker => marker.setMap(null));
+  markers = [];
+};
 
 const sendMarkerData = (data) => {
   $.ajax({
