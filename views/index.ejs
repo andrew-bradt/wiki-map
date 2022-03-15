@@ -21,19 +21,17 @@
       <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <i class="fa-solid fa-bars"></i>
       </button>
-      <nav class="offcanvas offcanvas-start" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <ul class="navbar-nav justify-content-start">
-          <li class="nav-item">Wiki-Map</li>
+      <nav class="offcanvas offcanvas-start navbar-nav justify-content-start" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <a class="nav-item">Wiki-Map</a>
           <br/>
-          <li class="nav-item">username</li>
+          <a class="nav-item">username</a>
           <br/>
-          <li class="nav-item">map title</li>
-          <li class="nav-item">map settings</li>
+          <a class="nav-item">map title</a>
+          <a class="nav-item">map settings</a>
           <br/>
-          <li class="nav-item">favourites</li>
-          <li class="nav-item">find maps</li>
-          <li class="nav-item">create map</li>
-        </ul>
+          <a class="nav-item">favourites</a>
+          <a class="nav-item">find maps</a>
+          <a class="nav-item" onclick="createMap(1)">Create Map</a>
       </nav>
   </header>
   <main id = 'root'>
