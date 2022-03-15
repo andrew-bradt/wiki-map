@@ -13,6 +13,7 @@ const addMarker = (coords) => {
 
   marker.addListener('click', () => {
     renderModal(coords);
+    window.markerShown = marker;
   });
 
   marker.setMap(map);

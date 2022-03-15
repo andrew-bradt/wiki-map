@@ -88,6 +88,9 @@ $(() => {
       $markerModal.slideUp(300, () => {
         $markerModal.detach();
       });
+
+      // delete marker on map
+      markerShown.setMap(null);
     });
 
   });
