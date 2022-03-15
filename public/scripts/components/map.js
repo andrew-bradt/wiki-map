@@ -3,13 +3,18 @@
 // Assigning functions to window object is unnecessary unless your function is referring to DOM elements outside of function scope
 $(()=>{
   window.$map = $('#map');
-
 });
 
-const addMarker = (coords) => {
-  new google.maps.Marker({
+const addMarker = (coords, markerInfo) => {
+  const marker = new google.maps.Marker({
     position: coords,
     map
+  });
+  marker.addListener('click', () => {
+    window.$markerModal = $(createModal(markerInfo, true));
+    $markerModal.appendTo($root);
+    $markerModal.hide();
+    $markerModal.slideDown();
   });
 };
 
@@ -34,7 +39,7 @@ const getMarkers = (map_id) => {
 const renderMarkers = (markerData) => {
   markerData.forEach(marker => {
     const {lat, lng} = marker;
-    addMarker({lat, lng});
+    addMarker({lat, lng}, marker);
   });
 };
 
