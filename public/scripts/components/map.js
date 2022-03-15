@@ -98,5 +98,16 @@ const renderModal = function (coords) {
       $markerModal.appendTo($root);
       $markerModal.hide();
       $markerModal.slideDown();
+
+      const mapArea = document.querySelector('#map');
+      const existModal = function (e) {
+        $markerModal.slideUp(300, () => {
+          $markerModal.detach();
+          mapArea.removeEventListener('click', existModal, true);
+        });
+        e.stopPropagation();
+      };
+      mapArea.addEventListener('click', existModal, true);
+
     });
 };
