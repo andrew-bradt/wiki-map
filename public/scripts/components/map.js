@@ -26,7 +26,7 @@ const removeMarkers = () => {
 };
 
 const sendMarkerData = (data) => {
-  $.ajax({
+  return $.ajax({
     type: 'POST',
     url: '/api/markers',
     data,
@@ -69,6 +69,7 @@ const loadMap = (id) => {
       renderMarkers(data);
       const center = getCenter(data);
       map.setCenter(center);
+      mapInfo.id = id;
     });
   window.views_manager.show('$map');
 };
