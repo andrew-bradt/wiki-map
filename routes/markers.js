@@ -1,10 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-const MAP_ID = 1;
-const TEMP_TITLE = 'Pizza';
-
 module.exports = (db) => {
+
+  router.get('/:lat/:lng', (req, res) => {
+    const { lat, lng } = req.params;
+    const query = `SELECT * FROM markers WHERE lat=$1 AND lng=$2`;
+
+    db.query(query, [lat, lng])
+      .then(result => {
+        res.json(result.rows);
+      })
+      .catch(err => {
+        res.status(500).json({ err: err.message });
+      });
+  });
 
   router.delete('/', (req, res) => {
     const markerId = req.body.id;
@@ -51,12 +61,13 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
-    const { lat, lng } = req.body;
+    const { lat, lng, map_id } = req.body;
+    console.log(lat, lng, map_id);
     const queryString = `
-    INSERT INTO markers (map_id, title, lat, lng)
-    VALUES ($1, $2, $3, $4);`
+    INSERT INTO markers (map_id, lat, lng)
+    VALUES ($1, $2, $3);`
       ;
-    const queryParams = [MAP_ID, TEMP_TITLE, lat, lng];
+    const queryParams = [map_id, lat, lng];
 
     db.query(queryString, queryParams)
       .then(() => {

@@ -1,9 +1,9 @@
 $(() => {
 
-  const createPopup = function (marker, isEdit) {
+  const createModal = function (marker, isEdit) {
     return `
-    <div class='card shadow p-3 mb-5 rounded'>
-    <img class='card-img-top' src='${marker.img_url}'>
+    <div class='card shadow p-3 mb-5 rounded' id='markerModal'>
+    <img class='card-img-top' src='${marker.img_url}' onerror="this.src='https://www.seekpng.com/png/detail/212-2120621_travel-places-emoticons-place-icon-png.png'">
     <div class='card-body'>
     <form class='infoDisplay'>
     <input type="hidden" name="id" value="${marker.id}">
@@ -47,19 +47,7 @@ $(() => {
   };
 
   // Store in window to allow access globally
-  window.createPopup = createPopup;
-
-  // test marker
-  const marker = {
-    id: 1,
-    title: 'Pizza Nova',
-    description: `Antonino Pizzeria is located off the main road.`,
-    img_url: 'https://lh5.googleusercontent.com/p/AF1QipOqrdfgkc1dcj6XruqiT09zf1vD1Nd5MvxGfz3H=w408-h306-k-no',
-    icon_img_url: 'https://icons.iconarchive.com/icons/sonya/swarm/64/Pizza-icon.png'
-  };
-
-  window.$popUp = $(createPopup(marker, true));
-  // end of test
+  window.createModal = createModal;
 
   // Actions when submitting form elements
   // submit changes
@@ -80,7 +68,9 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      $popUp.detach();
+      $markerModal.slideUp(300, () => {
+        $markerModal.detach();
+      });
     });
 
   });
@@ -90,13 +80,17 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
-    console.log(data);
     $.ajax({
       method: "DELETE",
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      $popUp.detach();
+      $markerModal.slideUp(300, () => {
+        $markerModal.detach();
+      });
+
+      // delete marker on map
+      markerShown.setMap(null);
     });
 
   });
