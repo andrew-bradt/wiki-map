@@ -15,5 +15,22 @@ module.exports = (db) => {
         res.json({'msg': `${err.message}`});
       });
   });
+  router.post('/', (req, res) => {
+    const {owner_id, title, description} = req.body;
+    const queryParams = [owner_id, title, description];
+    const queryString = `
+      INSERT INTO maps (owner_id, title, description)
+      VALUES ($1, $2, $3)
+      RETURNING id;
+    `;
+    return db.query(queryString, queryParams)
+      .then(data => {
+        res.json(data.rows[0]);
+      })
+      .catch(err => {
+        res.status(500);
+        res.json({'msg': `${err.message}`});
+      });
+  });
   return router;
 };
