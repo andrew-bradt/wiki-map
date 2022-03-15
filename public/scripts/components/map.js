@@ -104,6 +104,7 @@ const renderModal = function (coords) {
         $markerModal.slideUp(300, () => {
           $markerModal.detach();
           mapArea.removeEventListener('click', existModal, true);
+          mapArea.removeEventListener('click', existModal, false);
         });
         e.stopPropagation();
       };
