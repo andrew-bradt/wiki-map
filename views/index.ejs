@@ -24,16 +24,20 @@
         <i class="fa-solid fa-bars"></i>
       </button>
       <nav class="offcanvas offcanvas-start navbar-nav justify-content-start" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <a class="nav-item">Wiki-Map</a>
-          <br/>
-          <a class="nav-item">username</a>
-          <br/>
-          <a class="nav-item">map title</a>
-          <a class="nav-item">map settings</a>
-          <br/>
-          <a class="nav-item">favourites</a>
-          <a class="nav-item">find maps</a>
-          <a class="nav-item" onclick="createMap(1)">Create Map</a>
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">🗺️ Wiki-Map</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul>
+            <li class="nav-item">username</li>
+            <li class="nav-item">map title</li>
+            <li class="nav-item">map settings</li>
+            <li class="nav-item">favourites</li>
+            <li class="nav-item">find maps</li>
+            <li class="nav-item"><a onclick="createMap(1)">Create Map</a></li>
+          </ul>
+        </div>
       </nav>
   </header>
   <main id = 'root'>
