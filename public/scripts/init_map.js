@@ -6,7 +6,7 @@ function initMap() {
     center: {lat: 42, lng: -83}
   });
 
-  map.addListener('dbclick', (e)=>{
+  map.addListener('click', (e)=>{
     const coords = {
       lat: e.latLng.lat(),
       lng: e.latLng.lng()

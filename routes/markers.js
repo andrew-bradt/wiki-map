@@ -6,11 +6,11 @@ const TEMP_TITLE = 'Pizza';
 
 module.exports = (db) => {
 
-  router.get('/:id', (req, res) => {
-    const { id } = req.params;
-    const query = `SELECT * FROM markers WHERE id=$1`;
+  router.get('/:lat/:lng', (req, res) => {
+    const { lat, lng } = req.params;
+    const query = `SELECT * FROM markers WHERE lat=$1 AND lng=$2`;
 
-    db.query(query, [id])
+    db.query(query, [lat, lng])
       .then(result => {
         res.json(result.rows);
       })

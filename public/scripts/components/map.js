@@ -5,23 +5,24 @@ $(() => {
   window.$map = $('#map');
 });
 
-const addMarker = (coords, markerId) => {
+const addMarker = (coords) => {
   const marker = new google.maps.Marker({
     position: coords,
     map
   });
   marker.addListener('click', () => {
-    renderModal(markerId);
+    renderModal(coords);
   });
 };
 
-const renderModal = function(markerId) {
+const renderModal = function(coords) {
   $.ajax({
     type: 'GET',
-    url: `/api/markers/${markerId}`
+    url: `/api/markers/${coords.lat}/${coords.lng}`
   })
     .then(res => {
-      window.$markerModal = $(createModal(res[0], true));
+      const markerInfo = res[0] || {};
+      window.$markerModal = $(createModal(markerInfo, true));
       $markerModal.appendTo($root);
       $markerModal.hide();
       $markerModal.slideDown();
@@ -49,7 +50,7 @@ const getMarkers = (map_id) => {
 const renderMarkers = (markerData) => {
   markerData.forEach(marker => {
     const { lat, lng } = marker;
-    addMarker({ lat, lng }, marker.id);
+    addMarker({ lat, lng });
   });
 };
 
