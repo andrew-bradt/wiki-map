@@ -68,9 +68,7 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      $markerModal.slideUp(300, () => {
-        $markerModal.detach();
-      });
+      existModal(event);
     });
 
   });
@@ -85,9 +83,7 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      $markerModal.slideUp(300, () => {
-        $markerModal.detach();
-      });
+      existModal(event);
 
       // delete marker on map
       markerShown.setMap(null);

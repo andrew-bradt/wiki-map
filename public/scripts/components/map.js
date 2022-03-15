@@ -99,16 +99,16 @@ const renderModal = function (coords) {
       $markerModal.hide();
       $markerModal.slideDown();
 
-      const mapArea = document.querySelector('#map');
-      const existModal = function (e) {
-        $markerModal.slideUp(300, () => {
-          $markerModal.detach();
-          mapArea.removeEventListener('click', existModal, true);
-          mapArea.removeEventListener('click', existModal, false);
-        });
-        e.stopPropagation();
-      };
-      mapArea.addEventListener('click', existModal, true);
-
+      document.querySelector('#map').addEventListener('click', existModal, true);
     });
+};
+
+const existModal = function (e) {
+  const mapArea = document.querySelector('#map');
+  $markerModal.slideUp(300, () => {
+    $markerModal.detach();
+    mapArea.removeEventListener('click', existModal, true);
+    mapArea.removeEventListener('click', existModal, false);
+  });
+  e.stopPropagation();
 };
