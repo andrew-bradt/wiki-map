@@ -1,4 +1,5 @@
 let map;
+let markers = [];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -15,4 +16,3 @@ function initMap() {
     sendMarkerData(coords);
   });
 };
-

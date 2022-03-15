@@ -7,10 +7,12 @@ $(()=>{
 });
 
 const addMarker = (coords) => {
-  new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: coords,
     map
   });
+  marker.setMap(map);
+  markers.push(marker);
 };
 
 const sendMarkerData = (data) => {
@@ -59,3 +61,5 @@ const loadMap = (id) => {
     });
   window.views_manager.show('$map');
 };
+
+
