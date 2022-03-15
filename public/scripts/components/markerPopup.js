@@ -2,7 +2,7 @@ $(() => {
 
   const createModal = function (marker, isEdit) {
     return `
-    <div class='card shadow p-3 mb-5 rounded'>
+    <div class='card shadow p-3 mb-5 rounded' id='markerModal'>
     <img class='card-img-top' src='${marker.img_url}' onerror="this.src='https://www.seekpng.com/png/detail/212-2120621_travel-places-emoticons-place-icon-png.png'">
     <div class='card-body'>
     <form class='infoDisplay'>
