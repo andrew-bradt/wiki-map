@@ -65,7 +65,14 @@ const loadMap = (id) => {
   window.views_manager.show('$map');
 };
 
-const createMap = () => {
+const createMap = (data) => {
   removeMarkers();
+  $.ajax({
+    type: 'POST',
+    url: '/api/map',
+    data
+  }).then(res => {
+    mapInfo.id = res.id;
+  });
   window.views_manager.show('$map');
 };

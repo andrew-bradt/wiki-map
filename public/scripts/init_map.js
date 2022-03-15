@@ -1,6 +1,12 @@
 let map;
 let markers = [];
 
+const mapInfo = {
+  id: null,
+  title: '',
+  description: ''
+};
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
