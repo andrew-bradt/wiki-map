@@ -11,9 +11,12 @@ const addMarker = (coords) => {
     map
   });
 
+  // for deleting new markers that just created
+  window.markerShown = marker;
+
   marker.addListener('click', () => {
-    renderModal(coords);
     window.markerShown = marker;
+    renderModal(coords);
   });
 
   marker.setMap(map);
