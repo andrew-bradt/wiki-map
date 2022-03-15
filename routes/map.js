@@ -4,7 +4,10 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/', (req, res) => {
     console.log(req.query);
-    const querystring = 'SELECT * FROM maps JOIN users ON owner_id=users.id';
+    const querystring = `
+    SELECT * FROM maps
+    JOIN users ON owner_id=users.id
+    JOIN markers ON maps.id=map_id`;
     db.query(querystring)
       .then(data => {
         res.json(data.rows);
