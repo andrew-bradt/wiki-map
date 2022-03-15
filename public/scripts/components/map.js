@@ -55,6 +55,7 @@ const getCenter = (markerData) => {
 };
 
 const loadMap = (id) => {
+  removeMarkers();
   getMarkers(id)
     .then(data => {
       renderMarkers(data);
@@ -68,4 +69,3 @@ const createMap = () => {
   removeMarkers();
   window.views_manager.show('$map');
 };
-
