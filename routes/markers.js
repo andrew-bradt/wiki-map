@@ -6,6 +6,19 @@ const TEMP_TITLE = 'Pizza';
 
 module.exports = (db) => {
 
+  router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    const query = `SELECT * FROM markers WHERE id=$1`;
+
+    db.query(query, [id])
+      .then(result => {
+        res.json(result.rows);
+      })
+      .catch(err => {
+        res.status(500).json({ err: err.message });
+      });
+  });
+
   router.delete('/', (req, res) => {
     const markerId = req.body.id;
     const query = `

@@ -49,18 +49,6 @@ $(() => {
   // Store in window to allow access globally
   window.createModal = createModal;
 
-  // test marker
-  // const marker = {
-  //   id: 1,
-  //   title: 'Pizza Nova',
-  //   description: `Antonino Pizzeria is located off the main road.`,
-  //   img_url: 'https://lh5.googleusercontent.com/p/AF1QipOqrdfgkc1dcj6XruqiT09zf1vD1Nd5MvxGfz3H=w408-h306-k-no',
-  //   icon_img_url: 'https://icons.iconarchive.com/icons/sonya/swarm/64/Pizza-icon.png'
-  // };
-
-  // window.$popUp = $(createPopup(marker, true));
-  // end of test
-
   // Actions when submitting form elements
   // submit changes
   $('body').on('submit', '.infoDisplay', function (event) {
@@ -92,7 +80,6 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
-    console.log(data);
     $.ajax({
       method: "DELETE",
       url: `/api/markers`, // id will be included inside data

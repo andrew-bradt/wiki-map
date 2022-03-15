@@ -1,21 +1,31 @@
 // Add Components to window and then define methods for that component
 
 // Assigning functions to window object is unnecessary unless your function is referring to DOM elements outside of function scope
-$(()=>{
+$(() => {
   window.$map = $('#map');
 });
 
-const addMarker = (coords, markerInfo) => {
+const addMarker = (coords, markerId) => {
   const marker = new google.maps.Marker({
     position: coords,
     map
   });
   marker.addListener('click', () => {
-    window.$markerModal = $(createModal(markerInfo, true));
-    $markerModal.appendTo($root);
-    $markerModal.hide();
-    $markerModal.slideDown();
+    renderModal(markerId);
   });
+};
+
+const renderModal = function(markerId) {
+  $.ajax({
+    type: 'GET',
+    url: `/api/markers/${markerId}`
+  })
+    .then(res => {
+      window.$markerModal = $(createModal(res[0], true));
+      $markerModal.appendTo($root);
+      $markerModal.hide();
+      $markerModal.slideDown();
+    });
 };
 
 const sendMarkerData = (data) => {
@@ -23,7 +33,7 @@ const sendMarkerData = (data) => {
     type: 'POST',
     url: '/api/markers',
     data,
-    success: function() {
+    success: function () {
       console.log('Success');
     }
   });
@@ -38,8 +48,8 @@ const getMarkers = (map_id) => {
 
 const renderMarkers = (markerData) => {
   markerData.forEach(marker => {
-    const {lat, lng} = marker;
-    addMarker({lat, lng}, marker);
+    const { lat, lng } = marker;
+    addMarker({ lat, lng }, marker.id);
   });
 };
 
