@@ -5,9 +5,13 @@ module.exports = (db) => {
   router.get('/', (req, res) => {
     console.log(req.query);
     const querystring = `
-    SELECT * FROM maps
+    SELECT maps.*, img_url FROM maps
     JOIN users ON owner_id=users.id
-    JOIN markers ON maps.id=map_id`;
+    JOIN markers ON maps.id=map_id
+    JOIN (
+      SELECT DISTINCT ON (map_id) markers.map_id, markers.id FROM markers
+      ) s
+      ON s.id=markers.id`;
     db.query(querystring)
       .then(data => {
         res.json(data.rows);
