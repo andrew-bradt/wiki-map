@@ -32,6 +32,8 @@ $(() => {
 
 });
 
+
+// params need to be serialized format string, eg. user_id=1&seeFavorites=true or searchTitle=pizza
 const getAllMaps = function(params) {
   let url = 'api/map';
   if (params) {
