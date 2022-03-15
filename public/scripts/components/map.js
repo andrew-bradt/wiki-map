@@ -10,23 +10,19 @@ const addMarker = (coords) => {
     position: coords,
     map
   });
+
   marker.addListener('click', () => {
     renderModal(coords);
   });
+
+  marker.setMap(map);
+  markers.push(marker);
+
 };
 
-const renderModal = function(coords) {
-  $.ajax({
-    type: 'GET',
-    url: `/api/markers/${coords.lat}/${coords.lng}`
-  })
-    .then(res => {
-      const markerInfo = res[0] || {};
-      window.$markerModal = $(createModal(markerInfo, true));
-      $markerModal.appendTo($root);
-      $markerModal.hide();
-      $markerModal.slideDown();
-    });
+const removeMarkers = () => {
+  markers.forEach(marker => marker.setMap(null));
+  markers = [];
 };
 
 const sendMarkerData = (data) => {
@@ -67,6 +63,7 @@ const getCenter = (markerData) => {
 };
 
 const loadMap = (id) => {
+  removeMarkers();
   getMarkers(id)
     .then(data => {
       renderMarkers(data);
@@ -74,4 +71,30 @@ const loadMap = (id) => {
       map.setCenter(center);
     });
   window.views_manager.show('$map');
+};
+
+const createMap = (data) => {
+  removeMarkers();
+  $.ajax({
+    type: 'POST',
+    url: '/api/map',
+    data
+  }).then(res => {
+    mapInfo.id = res.id;
+  });
+  window.views_manager.show('$map');
+};
+
+const renderModal = function (coords) {
+  $.ajax({
+    type: 'GET',
+    url: `/api/markers/${coords.lat}/${coords.lng}`
+  })
+    .then(res => {
+      const markerInfo = res[0] || {};
+      window.$markerModal = $(createModal(markerInfo, true));
+      $markerModal.appendTo($root);
+      $markerModal.hide();
+      $markerModal.slideDown();
+    });
 };
