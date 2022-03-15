@@ -64,4 +64,8 @@ const loadMap = (id) => {
   window.views_manager.show('$map');
 };
 
+const createMap = () => {
+  removeMarkers();
+  window.views_manager.show('$map');
+};
 
