@@ -34,7 +34,7 @@ module.exports = (db) => {
       WHERE users.id=$1
       `;
     }
-    console.log(queryString, queryVal);
+    
     db.query(queryString, queryVal)
       .then(data => {
         res.json(data.rows);
