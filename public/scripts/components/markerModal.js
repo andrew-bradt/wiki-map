@@ -61,7 +61,7 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      existModal(event);
+      exitModal(event);
     });
 
   });
@@ -76,7 +76,7 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      existModal(event);
+      exitModal(event);
 
       // delete marker on map
       markerShown.setMap(null);
