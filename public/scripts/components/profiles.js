@@ -32,11 +32,13 @@ const renderProfiles = (profiles, parentEl) => {
   const profileEls = profiles.map(profile => {
     const {id, name} = profile;
     const el = $(`
-      <li key=${id}>
+      <li>
         <a>${name}</a>
       </li>
     `);
-    el.on('click', (e) => getProfile(e.target.key));
+    el.on('click', () => {
+      getProfile(id);
+    });
     return el;
   });
   parentEl.append(profileEls);
