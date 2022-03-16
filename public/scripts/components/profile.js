@@ -19,12 +19,12 @@ const getUserProfile = (id) => {
 
 const renderProfile = (mapInfo, name) => {
   $profile.children().first('h4').text(name);
-  renderMapList(mapInfo);
+  const $mapList = $profile.children('ul');
+  renderMapList(mapInfo, $mapList);
 };
 
-const renderMapList = (mapInfo) => {
-  const $ul = $profile.children('ul');
-  $ul.empty();
+const renderMapList = (mapInfo, $parentEl) => {
+  $parentEl.empty();
   const $mapList = mapInfo.map(map => {
     const {id, title, description} = map;
     const $li = $('<li></li>');
@@ -34,9 +34,11 @@ const renderMapList = (mapInfo) => {
     $title.on('click', () => {
       loadMap(id);
     });
+
     return $li.append($title, $description);
   });
-  $ul.append($mapList);
+
+  $parentEl.append($mapList);
 };
 
 const loadProfile = (id, name) => {
