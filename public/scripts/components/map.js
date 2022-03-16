@@ -74,8 +74,8 @@ const loadMap = (id) => {
       const center = getCenter(data);
       map.setCenter(center);
       mapInfo.id = id;
+      window.views_manager.show('$map');
     });
-  window.views_manager.show('$map');
 };
 
 const createMap = (data) => {

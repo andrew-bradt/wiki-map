@@ -15,11 +15,22 @@ const favButtonSwitchState = function (state) {
   $favButton.removeClass('btn-danger').addClass('btn-outline-danger');
 };
 
+// function to check if user has already favored this map, used for when loading map
+const checkIfFavor = function (map_id) {
+  return $.ajax({
+    type: 'GET',
+    url: `/favorites/${map_id}`
+  }).then(res => {
+    return res.length;
+  });
+};
+
+
 $(() => {
 
   // set favorite when clicked while outline button showing
-  $('body').on('click', '.btn-outline-danger', function() {
-    const data = { map_id: mapInfo.id};
+  $('body').on('click', '.btn-outline-danger', function () {
+    const data = { map_id: mapInfo.id };
     $.ajax({
       type: 'POST',
       url: '/favorites',
@@ -30,8 +41,8 @@ $(() => {
   });
 
   // unfavorite when clicked while solid button showing
-  $('body').on('click', '.btn-danger', function() {
-    const data = { map_id: mapInfo.id};
+  $('body').on('click', '.btn-danger', function () {
+    const data = { map_id: mapInfo.id };
     $.ajax({
       type: 'DELETE',
       url: '/favorites',

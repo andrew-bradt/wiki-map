@@ -2,6 +2,27 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
+
+  router.get('/:map_id', (req, res) => {
+    const user_id = req.session.user_id;
+    const { map_id } = req.params;
+
+    const queryStr = `
+    SELECT * FROM favorites
+    WHERE user_id=$1
+    AND map_id=$2
+    `;
+
+    db.query(queryStr, [user_id, map_id])
+      .then(result => {
+        res.send(result.rows);
+      })
+      .catch(err => {
+        res.status(500).json({ 'msg': `${err.message}` });
+      });
+
+  });
+
   router.post("/", (req, res) => {
     const user_id = req.session.user_id;
     const { map_id } = req.body;
@@ -41,6 +62,6 @@ module.exports = (db) => {
         res.status(500).json({ 'msg': `${err.message}` });
       });
 
-  })
+  });
   return router;
 };

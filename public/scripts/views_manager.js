@@ -19,6 +19,7 @@ $(()=>{
     case '$map':
       $map.appendTo($root);
       $favButton.appendTo($root);
+      checkIfFavor(mapInfo.id).then(res => {favButtonSwitchState(res)});
       break;
     case '$maps':
       $mapsList.appendTo($root);
