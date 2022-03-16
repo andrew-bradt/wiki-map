@@ -82,8 +82,12 @@ const createMap = (data) => {
   removeMarkers();
   window.views_manager.show('$map');
 
-  $mapCreateModal.appendTo($root);
+  modal.push($mapCreateModal);
+  modal[0].appendTo($root);
+  modal[0].hide();
+  modal[0].slideDown();
 
+  document.querySelector('#map').addEventListener('click', exitModal, true);
   // $.ajax({
   //   type: 'POST',
   //   url: '/api/map',
@@ -100,21 +104,26 @@ const renderModal = function (coords) {
   })
     .then(res => {
       const markerInfo = res[0] || {};
-      window.$markerModal = $(createModal(markerInfo, true));
-      $markerModal.appendTo($root);
-      $markerModal.hide();
-      $markerModal.slideDown();
+      modal.push($(createModal(markerInfo, true)));
+      modal[0].appendTo($root);
+      modal[0].hide();
+      modal[0].slideDown();
 
-      document.querySelector('#map').addEventListener('click', existModal, true);
+      document.querySelector('#map').addEventListener('click', exitModal, true);
     });
 };
 
-const existModal = function (e) {
+const exitModal = function (e) {
+  if (!$('#title').val()) {
+    e.stopPropagation();
+    return;
+  }
   const mapArea = document.querySelector('#map');
-  $markerModal.slideUp(300, () => {
-    $markerModal.detach();
-    mapArea.removeEventListener('click', existModal, true);
-    mapArea.removeEventListener('click', existModal, false);
+  modal[0].slideUp(300, () => {
+    modal[0].detach();
+    modal.pop();
+    mapArea.removeEventListener('click', exitModal, true);
+    mapArea.removeEventListener('click', exitModal, false);
   });
   e.stopPropagation();
 };
