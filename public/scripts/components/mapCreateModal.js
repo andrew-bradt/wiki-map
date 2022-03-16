@@ -8,7 +8,7 @@ $(() => {
     <div class="form-group">
       <label for="title" class="col-form-label text-secondary">Map Title</label>
       <div>
-        <input type="text" required class="form-control-plaintext border border-primary rounded" id="title" name="titel">
+        <input type="text" required class="form-control-plaintext border border-primary rounded" id="title" name="title">
       </div>
     </div>
     <div class="form-group">
@@ -28,16 +28,18 @@ $(() => {
 
   // Actions when submitting form elements
   // create map
-  $('body').on('submit', '.createMap', function (event) {
+  $('body').on('submit', '#createMap', function (event) {
     event.preventDefault();
 
     const data = $(this).serialize();
-
+    console.log(data);
     $.ajax({
-      method: "PUT",
-      url: `/api/markers`, // id will be included inside data
+      type: 'POST',
+      url: '/api/map',
       data
-    })
+    }).then(res => {
+      mapInfo.id = res.id;
+    });
 
   });
 

@@ -10,7 +10,7 @@ $(() => {
     <div class="form-group">
       <label for="title" class="col-form-label text-secondary">Title</label>
       <div>
-        <input required type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext border border-primary rounded" id="title" name="titel" value='${marker.title}'>
+        <input required type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext border border-primary rounded" id="title" name="title" value='${marker.title}'>
       </div>
     </div>
     <div class="form-group">
