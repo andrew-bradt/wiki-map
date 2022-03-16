@@ -30,7 +30,7 @@ const renderProfiles = (profiles, parentEl) => {
       </li>
     `);
     el.on('click', () => {
-      getProfile(id);
+      loadProfile(id);
     });
     return el;
   });
