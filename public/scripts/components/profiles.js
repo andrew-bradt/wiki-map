@@ -1,3 +1,11 @@
+$(()=>{
+  window.$profiles = $(`
+    <div id = 'profiles'>
+      <ul></ul>
+    </div>
+  `);
+});
+
 const getProfiles = () => {
   return $.ajax({
     type: 'GET',
