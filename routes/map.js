@@ -34,7 +34,10 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const {title, description} = req.body;
     const {user_id} = req.session;
-    const queryParams = [user_id, title, description];
+    console.log('user_id cookie: ', user_id);
+    console.log('title: ', title);
+    console.log('description: ', description);
+    const queryParams = [user_id, title || 'Some title', description];
     const queryString = `
       INSERT INTO maps (owner_id, title, description)
       VALUES ($1, $2, $3)
@@ -46,6 +49,7 @@ module.exports = (db) => {
       })
       .catch(err => {
         res.status(500);
+        console.log(err.message);
         res.json({'msg': `${err.message}`});
       });
   });
