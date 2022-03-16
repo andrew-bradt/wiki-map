@@ -20,6 +20,9 @@ $(()=>{
     case '$maps':
       $mapsList.appendTo($root);
       break;
+    case '$profiles':
+      $profiles.appendTo($root);
+      break;
     }
   };
 });

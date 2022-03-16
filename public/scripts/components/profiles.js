@@ -12,3 +12,7 @@ const getProfiles = () => {
     url: '/api/profiles'
   }).then(res => console.log(res));
 };
+
+const loadProfiles = () => {
+  window.views_manager.show('$profiles');
+};
