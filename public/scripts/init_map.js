@@ -1,6 +1,5 @@
 let map;
 let markers = [];
-let modal = [];
 
 const mapInfo = {
   id: null,

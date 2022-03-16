@@ -12,6 +12,7 @@ $(()=>{
   window.views_manager.show = function (component) {
     $map.detach();
     $mapsList.detach();
+    $mapCreateModal.detach();
 
     switch (component) {
     case '$map':
@@ -19,6 +20,9 @@ $(()=>{
       break;
     case '$maps':
       $mapsList.appendTo($root);
+      break;
+    case '$mapCreateModal':
+      $mapCreateModal.appendTo($root);
       break;
     }
   };
