@@ -18,7 +18,7 @@ module.exports = (db) => {
   });
   router.post('/', (req, res) => {
     const {title, description} = req.body;
-    const {user_id} = req.session;
+    const { user_id } = req.session;
     const queryParams = [user_id, title, description];
     const queryString = `
       INSERT INTO maps (owner_id, title, description)
@@ -40,7 +40,7 @@ module.exports = (db) => {
     const queryVal = [];
     let queryString = `
     select maps.*, img_url from maps
-    join markers on markers.map_id = maps.id
+    left join markers on markers.map_id = maps.id
     join (
       SELECT DISTINCT ON (map_id) markers.map_id, markers.id FROM markers
       ) s

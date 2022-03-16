@@ -10,7 +10,7 @@ $(() => {
     <div class="form-group">
       <label for="title" class="col-form-label text-secondary">Title</label>
       <div>
-        <input type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext border border-primary rounded" id="title" name="titel" value='${marker.title}'>
+        <input required type="text" ${isEdit ? `` : `readonly`} class="form-control-plaintext border border-primary rounded" id="title" name="title" value='${marker.title}'>
       </div>
     </div>
     <div class="form-group">
@@ -54,13 +54,6 @@ $(() => {
   $('body').on('submit', '.infoDisplay', function (event) {
     event.preventDefault();
 
-    // check if title is empty
-    if (!$('#title').val()) {
-
-      alert('Title cannot be empty!');
-      return;
-    }
-
     const data = $(this).serialize();
 
     $.ajax({
@@ -68,7 +61,7 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      existModal(event);
+      exitModal(event);
     });
 
   });
@@ -83,7 +76,7 @@ $(() => {
       url: `/api/markers`, // id will be included inside data
       data
     }).then(() => {
-      existModal(event);
+      exitModal(event);
 
       // delete marker on map
       markerShown.setMap(null);
