@@ -1,12 +1,18 @@
-body + header {
-  width: 100%;
-  background-color:white;
+.navbar {
+  ul {
+    padding-left: 1rem;
+
+    .nav-item {
+      list-style-type: none;
+      margin:0;
+      padding:0;
+      margin-bottom: 0.5em;
+    }
+
+  }
+  .offcanvas {
+    width: 225px;
+  }
 }
 
-.nav-item {
-  list-style-type: none;
-}
 
-.offcanvas {
-  width: 250px;
-}
