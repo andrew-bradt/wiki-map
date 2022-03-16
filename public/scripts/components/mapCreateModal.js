@@ -4,11 +4,11 @@ $(() => {
     <div class='card shadow p-3 mb-5 rounded' id='mapCreateModal'>
     <img class='card-img-top' src='https://i.pinimg.com/originals/73/11/61/731161a7c8d5374b0fed6fcb43875c87.png'>
     <div class='card-body'>
-    <form>
+    <form id='createMap'>
     <div class="form-group">
       <label for="title" class="col-form-label text-secondary">Map Title</label>
       <div>
-        <input type="text" class="form-control-plaintext border border-primary rounded" id="title" name="titel">
+        <input type="text" required class="form-control-plaintext border border-primary rounded" id="title" name="titel">
       </div>
     </div>
     <div class="form-group">
@@ -16,6 +16,7 @@ $(() => {
       <div>
         <textarea type="text" class="form-control-plaintext  border border-primary rounded" rows='2' id="description" name="description"></textarea>
       </div>
+      <button type="submit" class="btn btn-primary">Create</button>
     </form>
     </div>
     </div>
@@ -26,16 +27,9 @@ $(() => {
   window.$mapCreateModal = $mapCreateModal;
 
   // Actions when submitting form elements
-  // submit changes
-  $('body').on('submit', '.infoDisplay', function (event) {
+  // create map
+  $('body').on('submit', '.createMap', function (event) {
     event.preventDefault();
-
-    // check if title is empty
-    if (!$('#title').val()) {
-
-      alert('Title cannot be empty!');
-      return;
-    }
 
     const data = $(this).serialize();
 
