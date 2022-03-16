@@ -6,6 +6,15 @@ window.$favButton = $(`
 </button>
 `);
 
+// function to switch the state of favButton, pass truthy value to switch to can be pressed, falsy value to switch to unpressed
+const favButtonSwitchState = function (state) {
+  if (state) {
+    $favButton.removeClass('btn-outline-danger').addClass('btn-danger');
+    return;
+  }
+  $favButton.removeClass('btn-danger').addClass('btn-outline-danger');
+};
+
 $(() => {
 
   // set favorite when clicked while outline button showing
@@ -16,8 +25,7 @@ $(() => {
       url: '/favorites',
       data
     }).then(() => {
-      $favButton.removeClass('btn-outline-danger');
-      $favButton.addClass('btn-danger');
+      favButtonSwitchState(1);
     });
   });
 
@@ -29,8 +37,7 @@ $(() => {
       url: '/favorites',
       data
     }).then(() => {
-      $favButton.removeClass('btn-danger');
-      $favButton.addClass('btn-outline-danger');
+      favButtonSwitchState(0);
     });
   });
 
