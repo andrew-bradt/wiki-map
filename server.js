@@ -45,12 +45,14 @@ const widgetsRoutes = require("./routes/widgets");
 const markersRoutes = require('./routes/markers');
 const mapsRoutes = require('./routes/map');
 const loginRoute = require('./routes/login');
+const profilesRoutes = require('./routes/profiles');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use('/api/markers', markersRoutes(db));
 app.use('/api/map', mapsRoutes(db));
+app.use('/api/profiles', profilesRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use('/login', loginRoute(db));
 // Home page
