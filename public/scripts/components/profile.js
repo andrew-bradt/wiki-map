@@ -2,7 +2,7 @@ $(()=>{
   window.$profile = $(`<div id='profile'>A single profile will show up here.</div>`);
 });
 
-const getUserMaps = (id) => {
+const getUserProfile = (id) => {
   return $.ajax({
     type: 'GET',
     url: `/api/profiles/${id}`
@@ -10,6 +10,6 @@ const getUserMaps = (id) => {
 };
 
 const loadProfile = (id) => {
-  getUserMaps(id);
+  getUserProfile(id);
   window.views_manager.show('$profile');
 };
