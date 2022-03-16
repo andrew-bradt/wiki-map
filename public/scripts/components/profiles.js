@@ -15,13 +15,6 @@ const getProfiles = () => {
   });
 };
 
-const getProfile = (id) => {
-  return $.ajax({
-    type: 'GET',
-    url: `/api/profiles/${id}`
-  }).then(res => console.log(res));
-};
-
 const loadProfiles = () => {
   getProfiles()
     .then(res => renderProfiles(res, $profiles.children('ul')));
