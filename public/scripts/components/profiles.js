@@ -31,7 +31,11 @@ const loadProfiles = () => {
 const renderProfiles = (profiles, parentEl) => {
   const profileEls = profiles.map(profile => {
     const {id, name} = profile;
-    const el = $(`<li key=${id}>${name}</li>`);
+    const el = $(`
+      <li key=${id}>
+        <a>${name}</a>
+      </li>
+    `);
     el.on('click', (e) => getProfile(e.target.key));
     return el;
   });
