@@ -1,9 +1,9 @@
 $(()=>{
   window.$profile = $(`
   <div id='profile'>
-      <h5></h5>
+      <h4></h4>
       <img alt='profile-pic'></img>
-      <h5>User Maps:</h5>
+      <h4>User Maps:</h4>
       <ul></ul>
   </div>`);
 });
@@ -19,21 +19,25 @@ const getUserProfile = (id) => {
 };
 
 const renderProfile = (mapInfo, name) => {
-  $profile.children().first('h5').text(name);
-  const mapList = mapInfo.map(map => {
+  $profile.children().first('h4').text(name);
+  const $mapList = renderMapList(mapInfo);
+  $profile.children('ul').append($mapList);
+};
+
+const renderMapList = (mapInfo) => {
+  const $mapList = mapInfo.map(map => {
     const {id, title, description} = map;
-    return (
-      `
-      <li>
-        <div>
-          <h5><a>${title}</a></h5>
-          ${(description) ? `<p>${description}</p>` : ''}
-        </div>
-      </li>
-      `
-    );
+    const $li = $('<li></li>');
+    const $title = $(`<h5><a>${title}</a></h5>`);
+    const $description = (description) ? $(`<p>${description}</p>`) : '';
+
+    $title.on('click', () => {
+      loadMap(id);
+    });
+
+    return $li.append($title, $description);
   });
-  $profile.children('ul').append(mapList);
+  return $mapList;
 };
 
 const loadProfile = (id, name) => {
