@@ -13,6 +13,13 @@ const getProfiles = () => {
   }).then(res => console.log(res));
 };
 
+const getProfile = (id) => {
+  return $.ajax({
+    type: 'GET',
+    url: `/api/profiles/${id}`
+  }).then(res => console.log(res));
+};
+
 const loadProfiles = () => {
   window.views_manager.show('$profiles');
 };
