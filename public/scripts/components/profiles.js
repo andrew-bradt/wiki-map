@@ -22,6 +22,7 @@ const loadProfiles = () => {
 };
 
 const renderProfiles = (profiles, parentEl) => {
+  parentEl.empty();
   const profileEls = profiles.map(profile => {
     const {id, name} = profile;
     const el = $(`
