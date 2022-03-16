@@ -16,4 +16,18 @@ $(() => {
     });
 
 
+  $favButton.click(() => {
+
+    const data = { map_id: mapInfo.id};
+
+    $.ajax({
+      type: 'POST',
+      url: '/favorites',
+      data
+    }).then(() => {
+      $favButton.removeClass('btn-danger');
+      $favButton.addClass('btn-outline-danger');
+    });
+
+  });
 });
