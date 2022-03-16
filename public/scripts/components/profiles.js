@@ -10,7 +10,9 @@ const getProfiles = () => {
   return $.ajax({
     type: 'GET',
     url: '/api/profiles'
-  }).then(res => console.log(res));
+  }).then(res => {
+    return res;
+  });
 };
 
 const getProfile = (id) => {
@@ -21,5 +23,17 @@ const getProfile = (id) => {
 };
 
 const loadProfiles = () => {
+  getProfiles()
+    .then(res => renderProfiles(res, $profiles.children('ul')));
   window.views_manager.show('$profiles');
+};
+
+const renderProfiles = (profiles, parentEl) => {
+  const profileEls = profiles.map(profile => {
+    const {id, name} = profile;
+    const el = $(`<li key=${id}>${name}</li>`);
+    el.on('click', (e) => getProfile(e.target.key));
+    return el;
+  });
+  parentEl.append(profileEls);
 };
