@@ -80,14 +80,17 @@ const loadMap = (id) => {
 
 const createMap = (data) => {
   removeMarkers();
-  $.ajax({
-    type: 'POST',
-    url: '/api/map',
-    data
-  }).then(res => {
-    mapInfo.id = res.id;
-  });
   window.views_manager.show('$map');
+
+  $mapCreateModal.appendTo($root);
+
+  // $.ajax({
+  //   type: 'POST',
+  //   url: '/api/map',
+  //   data
+  // }).then(res => {
+  //   mapInfo.id = res.id;
+  // });
 };
 
 const renderModal = function (coords) {
