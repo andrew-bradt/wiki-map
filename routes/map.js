@@ -34,10 +34,7 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const {title, description} = req.body;
     const {user_id} = req.session;
-    console.log('user_id cookie: ', user_id);
-    console.log('title: ', title);
-    console.log('description: ', description);
-    const queryParams = [user_id, title || 'Some title', description];
+    const queryParams = [user_id, title, description];
     const queryString = `
       INSERT INTO maps (owner_id, title, description)
       VALUES ($1, $2, $3)
