@@ -11,12 +11,14 @@ $(()=>{
   // Invoke when component should be swapped with the component jQueryDOM Element
   window.views_manager.show = function (component) {
     $map.detach();
+    $favButton.detach();
     $mapsList.detach();
     $mapCreateModal.detach();
 
     switch (component) {
     case '$map':
       $map.appendTo($root);
+      $favButton.appendTo($root);
       break;
     case '$maps':
       $mapsList.appendTo($root);
