@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -22,7 +23,10 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cookieSession({
+  name: 'session',
+  keys: ['some_secret_phrase']
+}));
 app.use(
   "/styles",
   sassMiddleware({
@@ -40,7 +44,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const markersRoutes = require('./routes/markers');
 const mapsRoutes = require('./routes/map');
-
+const loginRoute = require('./routes/login');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -48,7 +52,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use('/api/markers', markersRoutes(db));
 app.use('/api/map', mapsRoutes(db));
 // Note: mount other resources here, using the same pattern above
-
+app.use('/login', loginRoute(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).

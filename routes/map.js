@@ -34,7 +34,7 @@ module.exports = (db) => {
       WHERE users.id=$1
       `;
     }
-    
+
     db.query(queryString, queryVal)
       .then(data => {
         res.json(data.rows);
@@ -59,8 +59,9 @@ module.exports = (db) => {
       });
   });
   router.post('/', (req, res) => {
-    const { owner_id, title, description } = req.body;
-    const queryParams = [owner_id, title, description];
+    const {title, description} = req.body;
+    const {user_id} = req.session;
+    const queryParams = [user_id, title, description];
     const queryString = `
       INSERT INTO maps (owner_id, title, description)
       VALUES ($1, $2, $3)
@@ -72,7 +73,7 @@ module.exports = (db) => {
       })
       .catch(err => {
         res.status(500);
-        res.json({ 'msg': `${err.message}` });
+        res.json({'msg': `${err.message}`});
       });
   });
   return router;
