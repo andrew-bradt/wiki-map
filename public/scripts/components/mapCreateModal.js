@@ -32,13 +32,13 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
-    console.log(data);
     $.ajax({
       type: 'POST',
       url: '/api/map',
       data
     }).then(res => {
       mapInfo.id = res.id;
+      exitModal(event);
     });
 
   });

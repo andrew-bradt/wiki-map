@@ -82,19 +82,14 @@ const createMap = (data) => {
   removeMarkers();
   window.views_manager.show('$map');
 
+  // render create map modal
   modal.push($mapCreateModal);
   modal[0].appendTo($root);
   modal[0].hide();
   modal[0].slideDown();
 
+  // termparyly disable click event reaching map
   document.querySelector('#map').addEventListener('click', exitModal, true);
-  // $.ajax({
-  //   type: 'POST',
-  //   url: '/api/map',
-  //   data
-  // }).then(res => {
-  //   mapInfo.id = res.id;
-  // });
 };
 
 const renderModal = function (coords) {

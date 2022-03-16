@@ -18,7 +18,7 @@ module.exports = (db) => {
   });
   router.post('/', (req, res) => {
     const {title, description} = req.body;
-    const {user_id} = req.session;
+    const { user_id } = req.session;
     const queryParams = [user_id, title, description];
     const queryString = `
       INSERT INTO maps (owner_id, title, description)
