@@ -5,7 +5,7 @@ $(()=>{
 const getUserMaps = (id) => {
   return $.ajax({
     type: 'GET',
-    url: `/api/profiles/${id}`
+    url: `/api/map?user_id=${id}`
   }).then(res => console.log(res));
 };
 
