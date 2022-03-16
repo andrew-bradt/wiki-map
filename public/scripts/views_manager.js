@@ -10,8 +10,7 @@ $(()=>{
 
   // Invoke when component should be swapped with the component jQueryDOM Element
   window.views_manager.show = function (component) {
-    $map.detach();
-    $mapsList.detach();
+    $root.children().detach();
 
     switch (component) {
     case '$map':
@@ -22,6 +21,9 @@ $(()=>{
       break;
     case '$profiles':
       $profiles.appendTo($root);
+      break;
+    case '$profile':
+      $profile.appendTo($root);
       break;
     }
   };
