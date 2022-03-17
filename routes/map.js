@@ -27,7 +27,7 @@ module.exports = (db) => {
       queryString = `
         INSERT INTO maps (owner_id, title, description)
         VALUES ($1, $2, $3)
-        RETURNING id;
+        RETURNING *;
       `;
     } else { // update when there is a map id
       queryParams = [map_id, title, description];
@@ -36,7 +36,7 @@ module.exports = (db) => {
       SET title=$2,
       description=$3
       WHERE id=$1
-      RETURNING id;
+      RETURNING *;
       `;
     }
     return db.query(queryString, queryParams)
@@ -81,7 +81,7 @@ module.exports = (db) => {
       WHERE maps.id=$1;
       `;
     }
-
+    console.log(queryVal);
     db.query(queryString, queryVal)
       .then(data => {
         res.json(data.rows);
