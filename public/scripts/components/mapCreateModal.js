@@ -38,7 +38,7 @@ $(() => {
       data
     }).then(res => {
       mapInfo.id = res.id;
-      exitModal(event);
+      views_manager.show('$map');
     });
 
   });

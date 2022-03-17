@@ -74,22 +74,14 @@ const loadMap = (id) => {
       const center = getCenter(data);
       map.setCenter(center);
       mapInfo.id = id;
+      window.views_manager.show('$map');
     });
-  window.views_manager.show('$map');
 };
 
 const createMap = (data) => {
   removeMarkers();
-  window.views_manager.show('$map');
-
   // render create map modal
-  modal.push($mapCreateModal);
-  modal[0].appendTo($root);
-  modal[0].hide();
-  modal[0].slideDown();
-
-  // termparyly disable click event reaching map
-  document.querySelector('#map').addEventListener('click', exitModal, true);
+  views_manager.show('$mapCreateModal');
 };
 
 const renderModal = function (coords) {
@@ -99,24 +91,19 @@ const renderModal = function (coords) {
   })
     .then(res => {
       const markerInfo = res[0] || {};
-      modal.push($(createModal(markerInfo, true)));
-      modal[0].appendTo($root);
-      modal[0].hide();
-      modal[0].slideDown();
+      window.$markerModal = $(createModal(markerInfo, true));
+      $markerModal.appendTo($root);
+      $markerModal.hide();
+      $markerModal.slideDown();
 
       document.querySelector('#map').addEventListener('click', exitModal, true);
     });
 };
 
 const exitModal = function (e) {
-  if (!$('#title').val()) {
-    e.stopPropagation();
-    return;
-  }
   const mapArea = document.querySelector('#map');
-  modal[0].slideUp(300, () => {
-    modal[0].detach();
-    modal.pop();
+  $markerModal.slideUp(300, () => {
+    $markerModal.detach();
     mapArea.removeEventListener('click', exitModal, true);
     mapArea.removeEventListener('click', exitModal, false);
   });

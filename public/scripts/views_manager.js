@@ -11,10 +11,16 @@ $(()=>{
   // Invoke when component should be swapped with the component jQueryDOM Element
   window.views_manager.show = function (component) {
     $root.children().detach();
+    // $map.detach();
+    // $favButton.detach();
+    // $mapsList.detach();
+    // $mapCreateModal.detach();
 
     switch (component) {
     case '$map':
       $map.appendTo($root);
+      $favButton.appendTo($root);
+      checkIfFavor(mapInfo.id).then(res => {favButtonSwitchState(res)});
       break;
     case '$maps':
       $mapsList.appendTo($root);
@@ -24,6 +30,9 @@ $(()=>{
       break;
     case '$profile':
       $profile.appendTo($root);
+      break;
+    case '$mapCreateModal':
+      $mapCreateModal.appendTo($root);
       break;
     }
   };

@@ -10,10 +10,15 @@ a {
 }
 
 .maps-list {
-  margin: auto;
+  margin: 4em auto 1em auto;
   width: 65vw;
   display: flex;
   flex-direction: column;
   gap: 2em;
 }
 
+#favButton {
+  position: fixed;
+  bottom: 5.2em;
+  right: 3.8em;
+}
