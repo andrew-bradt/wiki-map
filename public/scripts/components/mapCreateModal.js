@@ -50,7 +50,7 @@ $(() => {
       url: '/api/map',
       data
     }).then(res => {
-      Object.keys(res).forEach(key => {
+      Object.keys(mapInfo).forEach(key => {
         mapInfo[key] = res[key];
       });
       views_manager.show('$map');
