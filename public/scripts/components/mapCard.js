@@ -18,7 +18,6 @@ $(() => {
   $('main').on('click', '.checkOutMap', function() {
     const mapId = $(this).data('id');
     const mapTitle = $(this).siblings('h5').text();
-    changeMapTitleNav(`Current Map: ${mapTitle}`);
-    loadMap(mapId);
+    loadMap(mapId, mapTitle);
   });
 });
