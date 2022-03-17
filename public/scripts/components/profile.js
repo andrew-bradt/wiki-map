@@ -48,7 +48,7 @@ const renderSection = (options, $parentEl) => {
 
   if (!$mapLists) return;
   const $mapSection = $(`
-    <section>${label}</section>
+    <section><h5>${label}</h5></section>
   `);
 
   $mapSection.append($mapLists);
