@@ -110,3 +110,17 @@ const exitModal = function (e) {
   });
   e.stopPropagation();
 };
+
+const mapSettings = function () {
+  if (!$('#map').length) {
+    return;
+  }
+  const url = `api/map?map_id=${mapInfo.id}`;
+  $.ajax({
+    url
+  })
+    .then(res => {
+      $mapSettingModal = $(mapModal(res[0], true));
+      views_manager.show('$mapSettingModal');
+    });
+};

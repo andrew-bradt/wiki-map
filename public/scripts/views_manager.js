@@ -33,7 +33,11 @@ $(()=>{
       $profile.appendTo($root);
       break;
     case '$mapCreateModal':
+      mapInfo.id = null;
       $mapCreateModal.appendTo($root);
+      break;
+    case '$mapSettingModal':
+      $mapSettingModal.appendTo($root);
       break;
     }
   };

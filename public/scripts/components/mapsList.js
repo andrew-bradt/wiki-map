@@ -32,6 +32,24 @@ $(() => {
 
 });
 
+const loadFavorites = function() {
+  const url = 'api/map?seeFavorites=true';
+  $.ajax({
+    url
+  })
+    .then(res => {
+      mapsList.addMapsList(res);
+      views_manager.show('$maps');
+    });
+};
+
+const loadAllMaps = function() {
+  getAllMaps().then(function(json) {
+    mapsList.addMapsList(json);
+    views_manager.show('$maps');
+  });
+};
+
 
 // params need to be serialized format string, eg. user_id=1&seeFavorites=true or searchTitle=pizza
 const getAllMaps = function(params) {
@@ -43,3 +61,4 @@ const getAllMaps = function(params) {
     url,
   });
 };
+

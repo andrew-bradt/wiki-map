@@ -17,14 +17,28 @@ module.exports = (db) => {
       });
   });
   router.post('/', (req, res) => {
-    const {title, description} = req.body;
+    const {title, description, map_id} = req.body;
     const { user_id } = req.session;
-    const queryParams = [user_id, title, description];
-    const queryString = `
-      INSERT INTO maps (owner_id, title, description)
-      VALUES ($1, $2, $3)
-      RETURNING id;
-    `;
+    let queryParams, queryString;
+
+    // if no map id, means we are inserting new map
+    if (map_id === 'null') {
+      queryParams = [user_id, title, description];
+      queryString = `
+        INSERT INTO maps (owner_id, title, description)
+        VALUES ($1, $2, $3)
+        RETURNING *;
+      `;
+    } else { // update when there is a map id
+      queryParams = [map_id, title, description];
+      queryString = `
+      UPDATE maps
+      SET title=$2,
+      description=$3
+      WHERE id=$1
+      RETURNING *;
+      `;
+    }
     return db.query(queryString, queryParams)
       .then(data => {
         res.json(data.rows[0]);
@@ -36,7 +50,8 @@ module.exports = (db) => {
   });
 
   router.get('/', (req, res) => {
-    const { user_id, seeFavorites, searchTitle } = req.query;
+    const { seeFavorites, searchTitle, map_id } = req.query;
+    const { user_id } = req.session;
     const queryVal = [];
     let queryString = `
     select maps.*, img_url from maps
@@ -60,14 +75,13 @@ module.exports = (db) => {
       JOIN users ON users.id = favorites.user_id
       WHERE users.id=$1
       `;
-    } else if (user_id) { // if only user_id is passed in, user want to see maps created by them
-      queryVal.push(user_id);
+    } else if (map_id) {
+      queryVal.push(map_id);
       queryString += `
-      JOIN users ON users.id=maps.owner_id
-      WHERE users.id=$1
+      WHERE maps.id=$1;
       `;
     }
-
+    console.log(queryVal);
     db.query(queryString, queryVal)
       .then(data => {
         res.json(data.rows);

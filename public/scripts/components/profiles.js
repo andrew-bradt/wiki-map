@@ -1,8 +1,12 @@
 $(()=>{
   window.$profiles = $(`
-    <div id = 'profiles'>
-      <ul></ul>
-    </div>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header bg-primary text-white">
+    All users
+  </div>
+  <ul class="list-group list-group-flush">
+  </ul>
+</div>
   `);
 });
 
@@ -26,7 +30,7 @@ const renderProfiles = (profiles, parentEl) => {
   const profileEls = profiles.map(profile => {
     const {id, name} = profile;
     const el = $(`
-      <li>
+      <li class="list-group-item list-group-item-action list-group-item-primary">
         <a>${name}</a>
       </li>
     `);
