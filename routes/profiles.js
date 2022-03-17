@@ -2,9 +2,16 @@ const express = require('express');
 const router  = express.Router();
 
 const segmentByFavoriteAndOwns = (maps, userId) => {
-  const segmentedMaps = {owns: [], favourites: []};
+  const segmentedMaps = {ownFavorite: [], owns: [], favorites: []};
   for (const map of maps) {
-    (map.owner_id === Number(userId)) ? segmentedMaps.owns.push(map) : segmentedMaps.favourites.push(map);
+    const {owner_id, map_id} = map;
+    if (owner_id === userId && owner_id === map_id) {
+      segmentedMaps.ownFavorite.push(map);
+    } else if (owner_id === userId) {
+      segmentedMaps.owns.push(map);
+    } else {
+      segmentedMaps.favorites.push(map);
+    }
   }
   return segmentedMaps;
 };
@@ -21,8 +28,7 @@ module.exports = (db) => {
     `;
     return db.query(queryString, queryParams)
       .then(data => {
-        segmentByFavoriteAndOwns(data.rows, id);
-        res.json(data.rows);
+        res.json(segmentByFavoriteAndOwns(data.rows, Number(id)));
       })
       .catch(err => {
         res.status(500).json({msg: 'Server Error'});

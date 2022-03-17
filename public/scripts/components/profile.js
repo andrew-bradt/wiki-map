@@ -13,6 +13,7 @@ const getUserProfile = (id) => {
     type: 'GET',
     url: `/api/profiles/${id}`
   }).then(res => {
+    console.log(res);
     return res;
   });
 };
