@@ -54,9 +54,9 @@ module.exports = (db) => {
     const { user_id } = req.session;
     const queryVal = [];
     let queryString = `
-    select maps.*, img_url from maps
-    left join markers on markers.map_id = maps.id
-    join (
+    SELECT maps.*, img_url FROM maps
+    LEFT JOIN MARKERS on markers.map_id = maps.id
+    JOIN (
       SELECT DISTINCT ON (map_id) markers.map_id, markers.id FROM markers
       ) s
       ON s.id=markers.id

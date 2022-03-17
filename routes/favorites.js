@@ -39,7 +39,8 @@ module.exports = (db) => {
         res.send('set favorite success');
       })
       .catch(err => {
-        res.status(500).json({ 'msg': `${err.message}` });
+        console.log(err.message);
+        res.status(500).json({ 'msg': 'Server Error' });
       });
 
   });
@@ -59,7 +60,8 @@ module.exports = (db) => {
         res.send('favorite deleted');
       })
       .catch(err => {
-        res.status(500).json({ 'msg': `${err.message}` });
+        console.log(err.message);
+        res.status(500).json({ 'msg': 'Server Error' });
       });
 
   });
