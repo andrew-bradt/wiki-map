@@ -12,10 +12,7 @@ $(()=>{
   window.views_manager.show = function(component) {
     $root.children().detach();
     $searchBar.detach();
-    // $map.detach();
-    // $favButton.detach();
-    // $mapsList.detach();
-    // $mapCreateModal.detach();
+    hideMapTitleNav();
 
     switch (component) {
     case '$map':
