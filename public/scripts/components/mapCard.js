@@ -21,5 +21,4 @@ $(() => {
     changeMapTitleNav(`Current Map: ${mapTitle}`);
     loadMap(mapId);
   });
-
 });
