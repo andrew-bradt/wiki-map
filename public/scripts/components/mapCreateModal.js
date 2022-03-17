@@ -3,7 +3,7 @@ $(() => {
   const mapModal = function (mapInfo, setting) {
     return `
     <div class='card shadow p-3 mb-5 rounded' id='mapCreateModal'>
-    <img class='card-img-top' src='${mapInfo.img_url}' onerror="this.src='https://i.pinimg.com/originals/73/11/61/731161a7c8d5374b0fed6fcb43875c87.png'">
+    <img class='card-img-top' src='${mapInfo.img_url}'>
     <div class='card-body'>
     <form id='mapModal'}>
     <div class="form-group">
@@ -24,7 +24,7 @@ $(() => {
     `;
   };
 
-  const emptyMap = {title: '', description: ''};
+  const emptyMap = {title: '', description: '', img_url: 'https://i.pinimg.com/originals/73/11/61/731161a7c8d5374b0fed6fcb43875c87.png'};
   const $mapCreateModal = $(mapModal(emptyMap, false));
 
   // Store in window to allow access globally
