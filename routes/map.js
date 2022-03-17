@@ -36,7 +36,8 @@ module.exports = (db) => {
   });
 
   router.get('/', (req, res) => {
-    const { user_id, seeFavorites, searchTitle } = req.query;
+    const { seeFavorites, searchTitle } = req.query;
+    const { user_id } = req.session;
     const queryVal = [];
     let queryString = `
     select maps.*, img_url from maps
