@@ -17,14 +17,28 @@ module.exports = (db) => {
       });
   });
   router.post('/', (req, res) => {
-    const {title, description} = req.body;
+    const {title, description, map_id} = req.body;
     const { user_id } = req.session;
-    const queryParams = [user_id, title, description];
-    const queryString = `
-      INSERT INTO maps (owner_id, title, description)
-      VALUES ($1, $2, $3)
+    let queryParams, queryString;
+
+    // if no map id, means we are inserting new map
+    if (map_id === 'null') {
+      queryParams = [user_id, title, description];
+      queryString = `
+        INSERT INTO maps (owner_id, title, description)
+        VALUES ($1, $2, $3)
+        RETURNING id;
+      `;
+    } else { // update when there is a map id
+      queryParams = [map_id, title, description];
+      queryString = `
+      UPDATE maps
+      SET title=$2,
+      description=$3
+      WHERE id=$1
       RETURNING id;
-    `;
+      `;
+    }
     return db.query(queryString, queryParams)
       .then(data => {
         res.json(data.rows[0]);

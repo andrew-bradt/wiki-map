@@ -5,7 +5,7 @@ $(() => {
     <div class='card shadow p-3 mb-5 rounded' id='mapCreateModal'>
     <img class='card-img-top' src='${mapInfo.img_url}' onerror="this.src='https://i.pinimg.com/originals/73/11/61/731161a7c8d5374b0fed6fcb43875c87.png'">
     <div class='card-body'>
-    <form id=${setting ? 'mapSetting' : 'createMap'}>
+    <form id='mapModal'}>
     <div class="form-group">
       <label for="title" class="col-form-label text-secondary">Map Title</label>
       <div>
@@ -32,11 +32,11 @@ $(() => {
   window.mapModal = mapModal;
 
   // Actions when submitting form elements
-  // create map
-  $('body').on('submit', '#createMap', function (event) {
+  // create map or chang map settings
+  $('body').on('submit', '#mapModal', function (event) {
     event.preventDefault();
 
-    const data = $(this).serialize();
+    const data = $(this).serialize() + `&map_id=${mapInfo.id}`;
     $.ajax({
       type: 'POST',
       url: '/api/map',
@@ -46,7 +46,5 @@ $(() => {
       views_manager.show('$map');
     });
   });
-
-  // change map settings (ie title, description)
 
 });
