@@ -40,9 +40,9 @@ const renderMapList = (mapList) => {
 
   const $mapList = mapList.map(map => {
     const {id, title, description, img_url} = map;
-    const $li = $('<li class="card-body bg-light mt-3"></li>');
+    const $li = $('<li class="card-body container bg-light mt-3"></li>');
     const $img = $(`<img class='card-img-top' src='${img_url}'></img>`);
-    const $title = $(`<h5><a>${title}</a></h5>`);
+    const $title = $(`<h5>${title}</h5>`);
     const $description = (description) ? $(`<p>${description}</p>`) : '';
     const $button = $(`<button class="btn btn-primary">Check out this map</button>`);
     $button.on('click', () => {

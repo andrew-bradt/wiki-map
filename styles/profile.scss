@@ -1,11 +1,11 @@
 #profile {
-  h4, h5, button {
+  * {
     text-align: center;
-  }
-  img {
-    width: 100px;
   }
   li {
     list-style: none;
+    img {
+      width: 300px;
+    }
   }
 }
