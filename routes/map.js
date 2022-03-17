@@ -51,7 +51,7 @@ module.exports = (db) => {
     if (searchTitle) {
       queryVal.push('%' + searchTitle + '%');
       queryString += `
-      WHERE maps.title LIKE $1
+      WHERE maps.title ILIKE $1
       `;
     } else if (seeFavorites) { // if not searching, check if user want to see favorites, that require user_id
       queryVal.push(user_id);
