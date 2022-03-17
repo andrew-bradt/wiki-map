@@ -2,7 +2,7 @@ $(()=>{
   window.$profile = $(`
   <div id='profile'>
       <h4></h4>
-      <img alt='profile-pic'></img>
+      <img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img>
       <div></div>
   </div>`);
 });
