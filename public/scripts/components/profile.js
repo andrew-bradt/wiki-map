@@ -2,11 +2,12 @@ $(()=>{
   window.$profile = $(`
   <div id='profile' class='container-fluid d-flex-column justify-content-center'>
       <h4></h4>
+    <div class="text-center"><img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img></div>
+
       <section class="maps-list"></section>
   </div>`);
 });
 
-{/* <img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img> */}
 const getUserProfile = (id) => {
   return $.ajax({
     type: 'GET',
@@ -19,7 +20,7 @@ const getUserProfile = (id) => {
 const renderProfile = (mapInfo, name) => {
   const {ownFavorite, owns, favorites} = mapInfo;
 
-  $profile.children().first('h4').text(name);
+  $profile.children().first().text(name);
   const $listContainer = $profile.children('.maps-list');
   $listContainer.empty();
 
