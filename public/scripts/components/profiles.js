@@ -1,8 +1,12 @@
 $(()=>{
   window.$profiles = $(`
-    <div id = 'profiles'>
-      <ul class="lsit-group"></ul>
-    </div>
+  <div class="card" style="width: 18rem;">
+  <div class="card-header bg-primary text-white">
+    All users
+  </div>
+  <ul class="list-group list-group-flush">
+  </ul>
+</div>
   `);
 });
 
