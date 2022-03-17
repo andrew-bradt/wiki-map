@@ -38,6 +38,9 @@ $(()=>{
     case '$mapCreateModal':
       $mapCreateModal.appendTo($root);
       break;
+    case '$mapSettingModal':
+      $mapSettingModal.appendTo($root);
+      break;
     }
   };
 });

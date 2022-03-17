@@ -36,7 +36,7 @@ module.exports = (db) => {
   });
 
   router.get('/', (req, res) => {
-    const { seeFavorites, searchTitle } = req.query;
+    const { seeFavorites, searchTitle, map_id } = req.query;
     const { user_id } = req.session;
     const queryVal = [];
     let queryString = `
@@ -60,6 +60,11 @@ module.exports = (db) => {
       JOIN favorites ON maps.id = favorites.map_id
       JOIN users ON users.id = favorites.user_id
       WHERE users.id=$1
+      `;
+    } else if (map_id) {
+      queryVal.push(map_id);
+      queryString += `
+      WHERE maps.id=$1;
       `;
     }
 
