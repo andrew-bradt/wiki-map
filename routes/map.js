@@ -61,12 +61,6 @@ module.exports = (db) => {
       JOIN users ON users.id = favorites.user_id
       WHERE users.id=$1
       `;
-    } else if (user_id) { // if only user_id is passed in, user want to see maps created by them
-      queryVal.push(user_id);
-      queryString += `
-      JOIN users ON users.id=maps.owner_id
-      WHERE users.id=$1
-      `;
     }
 
     db.query(queryString, queryVal)
