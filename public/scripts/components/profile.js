@@ -18,13 +18,16 @@ const getUserProfile = (id) => {
 
 const renderProfile = (mapInfo, name) => {
   const {ownFavorite, owns, favorites} = mapInfo;
+
   $profile.children().first('h4').text(name);
   const $listContainer = $profile.children('div');
   $listContainer.empty();
+
   renderSection({
-    label: 'My Maps',
+    label: 'User Maps',
     mapLists: [ownFavorite, owns]
   }, $listContainer);
+
   renderSection({
     label: 'Favorite Maps',
     mapLists: [ownFavorite, favorites]
@@ -40,11 +43,11 @@ const renderMapList = (mapList) => {
     const $li = $('<li class="card-body bg-light mt-3"></li>');
     const $title = $(`<h5><a>${title}</a></h5>`);
     const $description = (description) ? $(`<p>${description}</p>`) : '';
-
-    $title.on('click', () => {
+    const $button = $(`<button class="btn btn-primary">Check out this map</button>`);
+    $button.on('click', () => {
       loadMap(id);
     });
-    return $li.append($title, $description);
+    return $li.append($title, $description, $button);
   });
 
   return $mapList;
