@@ -39,16 +39,16 @@ const renderMapList = (mapList) => {
   if (!mapList.length) return;
 
   const $mapList = mapList.map(map => {
-    console.log(map);
-    const {id, title, description} = map;
+    const {id, title, description, img_url} = map;
     const $li = $('<li class="card-body bg-light mt-3"></li>');
+    const $img = $(`<img class='card-img-top' src='${img_url}'></img>`);
     const $title = $(`<h5><a>${title}</a></h5>`);
     const $description = (description) ? $(`<p>${description}</p>`) : '';
     const $button = $(`<button class="btn btn-primary">Check out this map</button>`);
     $button.on('click', () => {
       loadMap(id);
     });
-    return $li.append($title, $description, $button);
+    return $li.append($img, $title, $description, $button);
   });
 
   return $mapList;

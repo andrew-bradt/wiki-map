@@ -35,7 +35,6 @@ module.exports = (db) => {
 
     return db.query(queryString, queryParams)
       .then(data => {
-        console.log(data.rows);
         res.json(segmentByFavoriteAndOwns(data.rows, Number(id)));
       })
       .catch(err => {
