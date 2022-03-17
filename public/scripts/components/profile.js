@@ -2,8 +2,7 @@ $(()=>{
   window.$profile = $(`
   <div id='profile' class='container-fluid d-flex-column justify-content-center'>
       <h4></h4>
-
-      <div></div>
+      <section class="maps-list"></section>
   </div>`);
 });
 
@@ -21,7 +20,7 @@ const renderProfile = (mapInfo, name) => {
   const {ownFavorite, owns, favorites} = mapInfo;
 
   $profile.children().first('h4').text(name);
-  const $listContainer = $profile.children('div');
+  const $listContainer = $profile.children('.maps-list');
   $listContainer.empty();
 
   renderSection({
@@ -36,13 +35,10 @@ const renderProfile = (mapInfo, name) => {
 };
 
 const renderMapList = (mapList) => {
-
   if (!mapList.length) return;
-
   const $mapList = mapList.map(map => {
     return createMapCard(map);
   });
-
   return $mapList;
 };
 
