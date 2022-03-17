@@ -1,6 +1,14 @@
 const express = require('express');
 const router  = express.Router();
 
+const segmentByFavoriteAndOwns = (maps, userId) => {
+  const segmentedMaps = {owns: [], favourites: []};
+  for (const map of maps) {
+    (map.owner_id === Number(userId)) ? segmentedMaps.owns.push(map) : segmentedMaps.favourites.push(map);
+  }
+  return segmentedMaps;
+};
+
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const {id} = req.params;
@@ -13,6 +21,7 @@ module.exports = (db) => {
     `;
     return db.query(queryString, queryParams)
       .then(data => {
+        segmentByFavoriteAndOwns(data.rows, id);
         res.json(data.rows);
       })
       .catch(err => {
