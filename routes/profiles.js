@@ -6,10 +6,10 @@ module.exports = (db) => {
     const {id} = req.params;
     const queryParams = [id];
     const queryString = `
-    SELECT maps.id, title, description
-    FROM users
-    JOIN maps ON users.id = maps.owner_id
-    WHERE users.id = $1;
+    SELECT maps.*
+    FROM maps
+    LEFT OUTER JOIN favorites ON maps.id = favorites.map_id
+    WHERE maps.owner_id = $1 OR favorites.user_id = $1;
     `;
     return db.query(queryString, queryParams)
       .then(data => {
