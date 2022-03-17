@@ -3,8 +3,7 @@ $(()=>{
   <div id='profile'>
       <h4></h4>
       <img alt='profile-pic'></img>
-      <h4>User Maps:</h4>
-      <ul></ul>
+      <div></div>
   </div>`);
 });
 
@@ -13,20 +12,30 @@ const getUserProfile = (id) => {
     type: 'GET',
     url: `/api/profiles/${id}`
   }).then(res => {
-    console.log(res);
     return res;
   });
 };
 
 const renderProfile = (mapInfo, name) => {
+  const {ownFavorite, owns, favorites} = mapInfo;
   $profile.children().first('h4').text(name);
-  const $mapList = $profile.children('ul');
-  renderMapList(mapInfo, $mapList);
+  const $listContainer = $profile.children('div');
+  $listContainer.empty();
+  renderSection({
+    label: 'My Maps',
+    mapLists: [ownFavorite, owns]
+  }, $listContainer);
+  renderSection({
+    label: 'Favorite Maps',
+    mapLists: [ownFavorite, favorites]
+  }, $listContainer);
 };
 
-const renderMapList = (mapInfo, $parentEl) => {
-  $parentEl.empty();
-  const $mapList = mapInfo.map(map => {
+const renderMapList = (mapList) => {
+
+  if (!mapList.length) return;
+
+  const $mapList = mapList.map(map => {
     const {id, title, description} = map;
     const $li = $('<li></li>');
     const $title = $(`<h5><a>${title}</a></h5>`);
@@ -35,11 +44,23 @@ const renderMapList = (mapInfo, $parentEl) => {
     $title.on('click', () => {
       loadMap(id);
     });
-
     return $li.append($title, $description);
   });
 
-  $parentEl.append($mapList);
+  return $mapList;
+};
+
+const renderSection = (options, $parentEl) => {
+  const {label, mapLists} = options;
+  const $mapLists = mapLists.map(maps => renderMapList(maps)).flat();
+
+  if (!$mapLists) return;
+  const $mapSection = $(`
+    <section>${label}</section>
+  `);
+
+  $mapSection.append($mapLists);
+  $parentEl.append($mapSection);
 };
 
 const loadProfile = (id, name) => {
