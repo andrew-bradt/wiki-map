@@ -39,6 +39,7 @@ const renderMapList = (mapList) => {
   if (!mapList.length) return;
 
   const $mapList = mapList.map(map => {
+    console.log(map);
     const {id, title, description} = map;
     const $li = $('<li class="card-body bg-light mt-3"></li>');
     const $title = $(`<h5><a>${title}</a></h5>`);
