@@ -1,6 +1,6 @@
 $(()=>{
   window.$profile = $(`
-  <div id='profile'>
+  <div id='profile' class='container-fluid d-flex-column justify-content-center'>
       <h4></h4>
       <img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img>
       <div></div>
@@ -37,7 +37,7 @@ const renderMapList = (mapList) => {
 
   const $mapList = mapList.map(map => {
     const {id, title, description} = map;
-    const $li = $('<li></li>');
+    const $li = $('<li class="card-body bg-light mt-3"></li>');
     const $title = $(`<h5><a>${title}</a></h5>`);
     const $description = (description) ? $(`<p>${description}</p>`) : '';
 
