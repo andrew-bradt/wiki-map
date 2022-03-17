@@ -2,11 +2,12 @@ $(()=>{
   window.$profile = $(`
   <div id='profile' class='container-fluid d-flex-column justify-content-center'>
       <h4></h4>
-      <img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img>
+
       <div></div>
   </div>`);
 });
 
+{/* <img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img> */}
 const getUserProfile = (id) => {
   return $.ajax({
     type: 'GET',
@@ -39,16 +40,7 @@ const renderMapList = (mapList) => {
   if (!mapList.length) return;
 
   const $mapList = mapList.map(map => {
-    const {id, title, description, img_url} = map;
-    const $li = $('<li class="card-body container bg-light mt-3"></li>');
-    const $img = $(`<img class='card-img-top' src='${img_url}'></img>`);
-    const $title = $(`<h5>${title}</h5>`);
-    const $description = (description) ? $(`<p>${description}</p>`) : '';
-    const $button = $(`<button class="btn btn-primary">Check out this map</button>`);
-    $button.on('click', () => {
-      loadMap(id);
-    });
-    return $li.append($img, $title, $description, $button);
+    return createMapCard(map);
   });
 
   return $mapList;
