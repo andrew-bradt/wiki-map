@@ -67,10 +67,10 @@ app.get("/", (req, res) => {
   if (req.session.user_id) {
     const templateVars = {};
     return db.query(queryString, queryParams)
-    .then(data => {
-      templateVars.name = data.rows[0].name;
-      return res.render("index", templateVars);
-    });
+      .then(data => {
+        templateVars.name = data.rows[0].name;
+        return res.render("index", templateVars);
+      });
   }
   return res.render('index');
 });
