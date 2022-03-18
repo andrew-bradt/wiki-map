@@ -12,8 +12,9 @@ VALUES
 (3, 'Phở Hưng', 'Best pho in town', 'https://lh5.googleusercontent.com/p/AF1QipNntKz7rh6OExm6uHSRVHc3pl-tHwxuMIRKICHj=w408-h408-k-no', '', 43.65447990378787, -79.39892761934006),
 (4, 'Mill Pond Park', 'Has a boardwalk, a gazebo & a playground around a pond with ice skating in winter.', 'https://lh5.googleusercontent.com/p/AF1QipM7TcNN6Wcnl7yN47soDoY_C6HfZDj7K7WSsGAU=w426-h240-k-no', '', 43.87614318176403, -79.4518871745156),
 (4, 'Lake Wilcox', 'Nice place (water park, panic, kayaking, nice view) but parking is limited', 'https://lh5.googleusercontent.com/p/AF1QipPkeUsO7Gx3BbEwkPkIyzkGX0l-3qQCJgsL9eqi=w408-h306-k-no', '', 43.95197255303012, -79.4299791029164),
-(4, 'Richmond Green Sports Centre and Park', 'Good place for family, sport, children area, bicycle trails, everything you need', 'https://lh5.googleusercontent.com/p/AF1QipPOHYyvSAck0qnR4K1JQlQ_OgOFMRRtJIi5Nomu=w408-h306-k-no', '', 43.900358999936856, -79.40227021499658);
-
+(4, 'Richmond Green Sports Centre and Park', 'Good place for family, sport, children area, bicycle trails, everything you need', 'https://lh5.googleusercontent.com/p/AF1QipPOHYyvSAck0qnR4K1JQlQ_OgOFMRRtJIi5Nomu=w408-h306-k-no', '', 43.900358999936856, -79.40227021499658),
+(5, 'Game ANd Hobby Zone', 'Great selection of jigsaw puzzles and great prices.', 'https://lh5.googleusercontent.com/p/AF1QipORDRYPG9nX551nE-_ni-eBMJztdKvNasvzOdTu=w426-h240-k-no', '', 43.670939107161416, -79.38728387299452 ),
+(6, 'Menagerie Pet Shop', 'A good place for aquarium plants while fish/shrimp/snail seems to be limited', 'https://lh5.googleusercontent.com/p/AF1QipO7PBfPOqGwlrXnH_wABhogxiPLpBbaQZTeBHhZ=w408-h270-k-no','', 43.66662852410494, -79.36855804230451);
 
 
 
