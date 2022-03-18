@@ -1,9 +1,10 @@
 $(()=>{
   window.$profile = $(`
-  <div id='profile'>
+  <div id='profile' class='container-fluid d-flex-column justify-content-center'>
       <h4></h4>
-      <img alt='profile-pic'></img>
-      <div></div>
+    <div class="text-center"><img alt='profile-pic' src='https://storage.needpix.com/rsynced_images/profile-2398782_1280.png'></img></div>
+
+      <section class="maps-list"></section>
   </div>`);
 });
 
@@ -18,13 +19,16 @@ const getUserProfile = (id) => {
 
 const renderProfile = (mapInfo, name) => {
   const {ownFavorite, owns, favorites} = mapInfo;
-  $profile.children().first('h4').text(name);
-  const $listContainer = $profile.children('div');
+
+  $profile.children().first().text(name);
+  const $listContainer = $profile.children('.maps-list');
   $listContainer.empty();
+
   renderSection({
-    label: 'My Maps',
+    label: 'User Maps',
     mapLists: [ownFavorite, owns]
   }, $listContainer);
+
   renderSection({
     label: 'Favorite Maps',
     mapLists: [ownFavorite, favorites]
@@ -32,21 +36,10 @@ const renderProfile = (mapInfo, name) => {
 };
 
 const renderMapList = (mapList) => {
-
   if (!mapList.length) return;
-
   const $mapList = mapList.map(map => {
-    const {id, title, description} = map;
-    const $li = $('<li></li>');
-    const $title = $(`<h5><a>${title}</a></h5>`);
-    const $description = (description) ? $(`<p>${description}</p>`) : '';
-
-    $title.on('click', () => {
-      loadMap(id);
-    });
-    return $li.append($title, $description);
+    return createMapCard(map);
   });
-
   return $mapList;
 };
 
@@ -56,7 +49,7 @@ const renderSection = (options, $parentEl) => {
 
   if (!$mapLists) return;
   const $mapSection = $(`
-    <section>${label}</section>
+    <section><h5>${label}</h5></section>
   `);
 
   $mapSection.append($mapLists);

@@ -66,7 +66,7 @@ const getCenter = (markerData) => {
   return coorSum;
 };
 
-const loadMap = (id) => {
+const loadMap = (id, mapTitle) => {
   removeMarkers();
   getMarkers(id)
     .then(data => {
@@ -75,6 +75,7 @@ const loadMap = (id) => {
       map.setCenter(center);
       mapInfo.id = id;
       window.views_manager.show('$map');
+      changeMapTitleNav(`Current Map: ${mapTitle}`);
     });
 };
 
