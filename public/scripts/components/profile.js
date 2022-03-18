@@ -30,7 +30,7 @@ const renderProfile = (mapInfo, name) => {
   }, $listContainer);
 
   renderSection({
-    label: 'Favorite Maps',
+    label: 'Favorite Maps By Other Users:',
     mapLists: [ownFavorite, favorites]
   }, $listContainer);
 };
