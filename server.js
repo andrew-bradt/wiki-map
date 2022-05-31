@@ -3,6 +3,7 @@ require("dotenv").config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
+const {GOOGLE_MAPS_API_KEY} = process.env;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -65,7 +66,7 @@ app.get("/", (req, res) => {
   const queryParams = [req.session.user_id];
 
   if (req.session.user_id) {
-    const templateVars = {};
+    const templateVars = {GOOGLE_MAPS_API_KEY};
     return db.query(queryString, queryParams)
       .then(data => {
         templateVars.name = data.rows[0].name;
