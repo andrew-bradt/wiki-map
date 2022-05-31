@@ -21,9 +21,24 @@ a {
 
 .maps-list > div {
   width: 350px;
+  // text-align: center;
+  .card-body {
+    display: flex;
+    flex-flow: row wrap;
+
+  }
+
   img {
     width: 100%;
     height: 250px;
+  }
+  .card-body {
+    h5, p {
+      width: 100%;
+    }
+    button {
+      align-self: flex-end;
+    }
   }
 }
 
