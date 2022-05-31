@@ -9,7 +9,7 @@ body {
 }
 
 #map {
-  margin-top:2vh;
+  margin-top:38px;
   width: 100vw;
-  height: 90vh;
+  height: calc(100vh - 38px);
 }
