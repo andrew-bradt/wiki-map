@@ -39,16 +39,16 @@ A social media application for collaborating on different maps using the Google 
 ### Markers
 Complete the steps affiliated with the marker operation of interest when viewing a map:
 
-- Adding a Marker
+#### Adding a Marker
   1. Click anywhere on the map to place a marker
   2. Fill out the "Title", "Description", "Image url", and "Icon Image url" fields
   3. Click the "Save changes" button
 
-- Deleting a New or Existing Marker
+#### Deleting a New or Existing Marker
   1. Click an existing marker or anywhere on the map
   2. Click the "Delete marker" button
 
-- Modifying a Marker
+#### Modifying a Marker
   1. Click an existing marker
   2. Modify any of the desired fields
   3. Click the "Save changes" button
