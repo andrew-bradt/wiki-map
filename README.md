@@ -5,6 +5,9 @@ A social media application for collaborating on different maps using the Google 
 [Andrew Bradt](https://github.com/andrew-bradt), [Roy Liu](https://github.com/Roy7384)
 
 ## Screenshots
+![Nav and Map List](/docs/nav-map-list.jpg)
+![Map](/docs/map.jpg)
+![Adding a Map](/docs/adding-a-map.jpg)
 
 ## Directions
 ### Navigating to the Application
