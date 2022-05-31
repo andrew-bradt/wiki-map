@@ -1,5 +1,3 @@
-// See: https://sass-lang.com/
-
 body,
 html {
   margin: 0;
@@ -21,11 +19,10 @@ a {
 
 .maps-list > div {
   width: 350px;
-  // text-align: center;
+
   .card-body {
     display: flex;
     flex-flow: row wrap;
-
   }
 
   img {

@@ -23,4 +23,9 @@
     text-align: right;
     margin-top: -3.35em;
   }
+
+  @media (min-width: 800px) {
+    width: 30vw;
+    top: 52%;
+  }
 }
